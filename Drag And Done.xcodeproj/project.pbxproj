@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F58E3701AA20864001CF7CA /* DNDColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58E36F1AA20864001CF7CA /* DNDColors.swift */; };
+		1F58E3741AA20B66001CF7CA /* DNDTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58E3731AA20B66001CF7CA /* DNDTaskView.swift */; };
 		1F6FE0FF1AA0B5BD00036974 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FE0FE1AA0B5BD00036974 /* AppDelegate.swift */; };
-		1F6FE1011AA0B5BD00036974 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FE1001AA0B5BD00036974 /* ViewController.swift */; };
 		1F6FE1041AA0B5BD00036974 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F6FE1021AA0B5BD00036974 /* Main.storyboard */; };
 		1F6FE1061AA0B5BD00036974 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F6FE1051AA0B5BD00036974 /* Images.xcassets */; };
 		1F6FE1091AA0B5BD00036974 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F6FE1071AA0B5BD00036974 /* LaunchScreen.xib */; };
 		1F6FE1151AA0B5BD00036974 /* Drag_And_DoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FE1141AA0B5BD00036974 /* Drag_And_DoneTests.swift */; };
+		1F6FE11F1AA0B5EA00036974 /* DragAndDoneMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FE11E1AA0B5EA00036974 /* DragAndDoneMainViewController.swift */; };
+		1F6FE1211AA0B77000036974 /* DNDTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FE1201AA0B77000036974 /* DNDTaskHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +29,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F58E36F1AA20864001CF7CA /* DNDColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDColors.swift; sourceTree = "<group>"; };
+		1F58E3731AA20B66001CF7CA /* DNDTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDTaskView.swift; sourceTree = "<group>"; };
 		1F6FE0F91AA0B5BD00036974 /* Drag And Done.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drag And Done.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F6FE0FD1AA0B5BD00036974 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F6FE0FE1AA0B5BD00036974 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1F6FE1001AA0B5BD00036974 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1F6FE1031AA0B5BD00036974 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1F6FE1051AA0B5BD00036974 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1F6FE1081AA0B5BD00036974 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1F6FE10E1AA0B5BD00036974 /* Drag And DoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Drag And DoneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F6FE1131AA0B5BD00036974 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F6FE1141AA0B5BD00036974 /* Drag_And_DoneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drag_And_DoneTests.swift; sourceTree = "<group>"; };
+		1F6FE11E1AA0B5EA00036974 /* DragAndDoneMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDoneMainViewController.swift; sourceTree = "<group>"; };
+		1F6FE1201AA0B77000036974 /* DNDTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDTaskHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +84,11 @@
 			isa = PBXGroup;
 			children = (
 				1F6FE0FE1AA0B5BD00036974 /* AppDelegate.swift */,
-				1F6FE1001AA0B5BD00036974 /* ViewController.swift */,
+				1F6FE11E1AA0B5EA00036974 /* DragAndDoneMainViewController.swift */,
 				1F6FE1021AA0B5BD00036974 /* Main.storyboard */,
+				1F6FE1201AA0B77000036974 /* DNDTaskHandler.swift */,
+				1F58E36F1AA20864001CF7CA /* DNDColors.swift */,
+				1F58E3731AA20B66001CF7CA /* DNDTaskView.swift */,
 				1F6FE1051AA0B5BD00036974 /* Images.xcassets */,
 				1F6FE1071AA0B5BD00036974 /* LaunchScreen.xib */,
 				1F6FE0FC1AA0B5BD00036974 /* Supporting Files */,
@@ -212,8 +221,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F6FE1011AA0B5BD00036974 /* ViewController.swift in Sources */,
 				1F6FE0FF1AA0B5BD00036974 /* AppDelegate.swift in Sources */,
+				1F58E3741AA20B66001CF7CA /* DNDTaskView.swift in Sources */,
+				1F58E3701AA20864001CF7CA /* DNDColors.swift in Sources */,
+				1F6FE1211AA0B77000036974 /* DNDTaskHandler.swift in Sources */,
+				1F6FE11F1AA0B5EA00036974 /* DragAndDoneMainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +419,7 @@
 				1F6FE11A1AA0B5BD00036974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1F6FE11B1AA0B5BD00036974 /* Build configuration list for PBXNativeTarget "Drag And DoneTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +428,7 @@
 				1F6FE11D1AA0B5BD00036974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

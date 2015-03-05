@@ -6,7 +6,35 @@
 //  Copyright (c) 2015 FreakoSoft. All rights reserved.
 //
 
+/*
+FOLDER:
+namn
+färg
+tasks
+update freq
+
+Task
+namn
+bild
+done
+
+
+*/
+
 import Foundation
+
+//protocol DNDTaskHandlerDelegate {
+//    func didSelectFolder()
+//}
+
+enum DNDUpdateFrequency: String
+{
+    case Daily = "Daily"
+        case Weekly = "Weekly"
+        case Monthly = "Monthly"
+        case Yearly = "Yearly"
+        case Custom = "Custom"
+}
 
 struct DNDTaskHandlerKeys {
     static let CurrentFolder = "DNDTaskHandlerDefaultKeys.currentFolder"
@@ -17,32 +45,52 @@ struct DNDTaskHandlerKeys {
     static let Color = "DNDTaskHandlerDictionaryKeys.color"
 }
 
-struct DNDTask {
-    var name: String
-    var imageName: String
-    
-    func taskDictionary() -> Dictionary<String, String>
-    {
-        return [DNDTaskHandlerKeys.TaskName:name, DNDTaskHandlerKeys.TaskImageName:imageName]
+struct DNDTask: Printable {
+    var done = false
+    var name: String!
+    var imageName: String!
+    var taskID:String!
+    var shortName: String {
+        get { return name.initials() }
     }
-    func taskFromDictionary(dictionary: Dictionary<String, String>) ->DNDTask
-    {
-        return DNDTask(name: dictionary[DNDTaskHandlerKeys.TaskName]!, imageName: dictionary[DNDTaskHandlerKeys.TaskImageName]!)
+    
+    var description: String {
+        return "Name: \(name) ImageName: \(imageName) ShortName: \(shortName) Done: \(done)"
+    }
+    
+    var toDictionary: Dictionary<String, String> {
+        return ["done":done.description, "name":name, "imageName":imageName, "taskID":taskID]
+    }
+}
+
+struct DNDFolder: Printable {
+    var name: String!
+    var colorString: String!
+    var updateFrequency = "Daily"
+    var tasks: Array<DNDTask>!
+    var doneTasks: Array<String>!
+    
+    var toDictionary: Dictionary<String, AnyObject> {
+        var dictTasks = Array<Dictionary<String, String>>()
+        for task in tasks
+        {
+            dictTasks.append(task.toDictionary)
+        }
+        return ["name":name, "colorString":colorString, "updateFrequency":updateFrequency, "tasks":dictTasks, "doneTasks":doneTasks]
+    }
+
+    var description: String {
+        return "Folder Name: \(name) Color: \(colorString) Updatefrequency: \(updateFrequency) Tasks: \(tasks)"
     }
 }
 
 class DNDTaskHandler
 {
+    //    var delegate:DNDTaskHandlerDelegate?
+    
+    
+    
     // FILE HANDLING
-    func plist() -> AnyObject
-    {
-        if let plist = NSKeyedUnarchiver.unarchiveObjectWithFile(plistPath()) as? Dictionary<String, AnyObject>
-        {
-            return plist
-        } else {
-            return Dictionary<String, AnyObject>()
-        }
-    }
     
     func docDir() -> String
     {
@@ -57,118 +105,232 @@ class DNDTaskHandler
         return path
     }
     
+    func currentFolderString() -> String?
+    {
+        return NSUserDefaults.standardUserDefaults().objectForKey(DNDTaskHandlerKeys.CurrentFolder) as String?
+    }
     
-    // FOLDER STUFF
+    func currentFolderColor() -> String?
+    {
+        var myPlist = NSMutableDictionary(contentsOfFile: plistPath())
+        if let folder = myPlist?[currentFolderString()!] as? NSDictionary
+        {
+            return folder["colorString"] as String?
+        }
+        return nil
+    }
+    
+    func folders() -> Array<String>
+    {
+        var myPlist:NSMutableDictionary!
+        myPlist = NSMutableDictionary(contentsOfFile: plistPath())
+        return myPlist.allKeys as Array<String>
+    }
 
     func selectFolderNamed(name: String)
     {
         println("SELECT FOLDER NAMED \(name)")
         NSUserDefaults.standardUserDefaults().setObject(name, forKey: DNDTaskHandlerKeys.CurrentFolder)
         NSUserDefaults.standardUserDefaults().synchronize()
+        //        delegate?.didSelectFolder()
     }
     
-    func currentFolder() -> String?
+    func createFolderNamed(name: String, select: Bool, overwrite: Bool) -> Bool
     {
-        println("CURRENT FOLDER")
-        if let folder = NSUserDefaults.standardUserDefaults().objectForKey(DNDTaskHandlerKeys.CurrentFolder) as? String
+        var myPlist:NSMutableDictionary!
+        myPlist = NSMutableDictionary(contentsOfFile: plistPath())
+        if myPlist == nil
         {
-            println("YEAH: \(folder)")
-            return folder
+            myPlist = NSMutableDictionary()
         }
-        return nil
-    }
-    
-    func createFolderNamed(name: String, select: Bool) -> Bool
-    {
-        println("CREATE FOLDER NAMED \(name)")
-
-        if let myPlist = plist() as? Dictionary<String, AnyObject>
+        // TODO: GET NEXT COLOR IN LINE!!
+        
+        if overwrite
         {
-            println("MY PLIST IS A DICTIONARY")
-            var myDictionary = myPlist
-            if myDictionary[name] == nil
+            if myPlist[name] != nil
             {
-                println("THERE IS NO FOLDER NAMED \(name)")
-                var folderDictionary = Dictionary<String, AnyObject>()
-                myDictionary[name] = folderDictionary
-                NSKeyedArchiver.archiveRootObject(myDictionary, toFile: plistPath())
-                if select
-                {
-                    NSUserDefaults.standardUserDefaults().setObject(name, forKey: DNDTaskHandlerKeys.CurrentFolder)
-                }
-            } else {
-                println("THERE ALREADY IS A FOLDER NAMED \(name)")
+                return false
             }
         }
-        return false
-    }
-
-    func folders() -> Array<String>?
-    {
-        return nil
-    }
-    
-    func removeFolderNamed(name: String) -> Bool
-    {
-        return false
-    }
-    
-    func renameFolder(oldName: String, newName: String) -> Bool
-    {
-        return false
-    }
-    
-    // TASKS STUFF
-    func tasks() -> Array<Dictionary<String, AnyObject>>?
-    {
-        return nil
+        
+        if select
+        {
+            selectFolderNamed(name)
+        }
+        
+        let nuFolder = DNDFolder(name: name, colorString: nextColor(), updateFrequency: "Daily", tasks: [], doneTasks: [])
+        myPlist.setObject(nuFolder.toDictionary, forKey: name)
+        
+        return myPlist.writeToFile(plistPath(), atomically: true)
     }
     
     func createTaskNamed(name: String, imageName: String) -> Bool
     {
         println("CREATE TASK NAMED \(name)")
-        if let folder = currentFolder()
+        var myPlist = NSMutableDictionary(contentsOfFile: plistPath())
+        if let folder = myPlist?[currentFolderString()!] as? NSMutableDictionary
         {
-            println("LET FOLDER = CURRENT FOLDER! \(folder)")
-            if let plist = plist() as? Dictionary<String, AnyObject>
+            println("YES LET")
+            var foldrr = folder
+            var tasks = foldrr["tasks"] as NSMutableArray
+            tasks.addObject(DNDTask(done: false, name: name, imageName: imageName, taskID: randomStringWithLength(10)).toDictionary)
+            foldrr.setObject(tasks, forKey: "tasks")
+            myPlist?.setObject(foldrr, forKey: currentFolderString()!)
+            myPlist?.writeToFile(plistPath(), atomically: true)
+        }
+        
+        return false
+    }
+    
+    func tasks() -> Array<DNDTask>?
+    {
+        var myPlist = NSMutableDictionary(contentsOfFile: plistPath())
+        if let folder = myPlist?[currentFolderString()!] as? NSDictionary
+        {
+            var taskArray = [DNDTask]()
+            for task in (folder["tasks"] as NSArray)
             {
-                var myPlist = plist
-                println("LET PLIST = PLIST()")
-                if let folderDict = myPlist[folder] as? Dictionary<String, AnyObject>
+                let nuTask = DNDTask(done: (task["done"] as String).toBool()!, name: task["name"] as String, imageName: task["imageName"] as String, taskID: task["taskID"] as String)
+                taskArray.append(nuTask)
+            }
+            return taskArray
+        }
+        return nil
+    }
+    
+    func taskDone(doneTask: DNDTask, done: Bool)
+    {
+        println("TASK DONE")
+        var myPlist = NSMutableDictionary(contentsOfFile: plistPath())
+        println("MY PLIST FÖRE: \(myPlist)")
+        if let folder = myPlist?[currentFolderString()!] as? NSMutableDictionary
+        {
+            var foldrr = folder
+            var tasks = foldrr["tasks"] as NSMutableArray
+            println("TASKS \(tasks)")
+            for task in tasks
+            {
+                if (task["taskID"] as String) == doneTask.taskID
                 {
-                    println("LET FOLDERDICT = PLIST FOLDER \(folder)")
-                    let nuTask = DNDTask(name: name, imageName: imageName)
-                    var myFolderDict = folderDict
-                    if myFolderDict[DNDTaskHandlerKeys.Tasks] == nil
+                    println("jo")
+                    let taskIndex = tasks.indexOfObject(task)
+                    let nuTask = DNDTask(done: done, name: doneTask.name, imageName: doneTask.imageName, taskID: doneTask.taskID).toDictionary
+                    tasks.insertObject(nuTask, atIndex: taskIndex)
+                    tasks.removeObject(task)
+                    var doneTasks = foldrr["doneTasks"] as NSMutableArray
+                    if done
                     {
-                        println("FANNS INGA TASKS! SKAPAR ARRAY OCH ADDAR TASK")
-                        let tasksArray = [nuTask.taskDictionary()]
-                        myFolderDict[DNDTaskHandlerKeys.Tasks] = tasksArray
+                        doneTasks.addObject(doneTask.taskID)
                     } else {
-                        println("FANNS TASKS! SKAPAR ARRAY, KOPIERAR IN GAMLA TASKS OCH ADDAR TASK")
-                        if let tasksArray = myFolderDict[DNDTaskHandlerKeys.Tasks] as? Array<Dictionary<String, String>>
-                        {
-                            var myTasksArray = tasksArray
-                            myTasksArray.append(nuTask.taskDictionary())
-                            myFolderDict[DNDTaskHandlerKeys.Tasks] = myTasksArray
-                        }
+                        doneTasks.removeObject(doneTask.taskID)
                     }
-                    myPlist[folder] = myFolderDict
-                    println("MY PLIST \(myPlist)")
-                    NSKeyedArchiver.archiveRootObject(myPlist, toFile: plistPath())
-                    println("MY FOLDER DICT \(myFolderDict)")
+                    foldrr.setObject(doneTasks, forKey: "doneTasks")
+                    break
                 }
             }
+//            tasks.addObject(DNDTask(done: false, name: name, imageName: imageName).toDictionary)
+            foldrr.setObject(tasks, forKey: "tasks")
+            println("THE FOLDRRR \(foldrr)")
+            myPlist?.setObject(foldrr, forKey: currentFolderString()!)
+            println("MY PLIST: \(myPlist)")
+            
+            if myPlist!.writeToFile(plistPath(), atomically: true)
+            {
+                println("SUCCESS!!")
+            } else {
+                println("FAIL!!")
+            }
         }
-        return false
     }
     
-    func removeTaskNamed(name: String) -> Bool
+    func randomStringWithLength (len : Int) -> NSString {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        
+        var randomString : NSMutableString = NSMutableString(capacity: len)
+        
+        for (var i=0; i < len; i++){
+            var length = UInt32 (letters.length)
+            var rand = arc4random_uniform(length)
+            randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+        }
+        
+        return randomString
+    }
+    
+    func nextColor() -> String
     {
-        return false
+        if let usedColors = NSUserDefaults.standardUserDefaults().objectForKey("usedColors") as? Array<String>
+        {
+            println("USED COLORS \(usedColors)")
+            for color in DNDColors.allColorStrings
+            {
+                println("TESTAR COLOR \(color)")
+                if find(usedColors, color) == nil
+                {
+                    var usedColorsArray = usedColors
+                    usedColorsArray.append(color)
+                    NSUserDefaults.standardUserDefaults().setObject(usedColorsArray, forKey: "usedColors")
+                    NSUserDefaults.standardUserDefaults().synchronize()
+                    return color
+                }
+            }
+        } else {
+            let firstColor = DNDColors.allColorStrings.first
+            NSUserDefaults.standardUserDefaults().setObject([firstColor!], forKey: "usedColors")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            return firstColor!
+        }
+        return "freakoViolet"
     }
-    
-
-    
     
 }
+
+/*    // COLORS
+func usedColorStrings() -> Array<String>
+{
+return []
+}
+
+
+// FOLDER STUFF
+
+
+
+
+
+
+func currentFolder() -> DNDFolder?
+{
+println("CURRENT FOLDER")
+return nil
+}
+
+
+
+
+func removeFolderNamed(name: String) -> Bool
+{
+return false
+}
+
+func renameFolder(oldName: String, newName: String) -> Bool
+{
+return false
+}
+
+// TASKS STUFF
+
+
+
+
+
+
+
+
+
+func removeTaskNamed(name: String) -> Bool
+{
+return false
+}
+*/

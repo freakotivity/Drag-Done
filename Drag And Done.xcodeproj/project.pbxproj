@@ -16,6 +16,8 @@
 		1F6FE1151AA0B5BD00036974 /* Drag_And_DoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FE1141AA0B5BD00036974 /* Drag_And_DoneTests.swift */; };
 		1F6FE11F1AA0B5EA00036974 /* DragAndDoneMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FE11E1AA0B5EA00036974 /* DragAndDoneMainViewController.swift */; };
 		1F6FE1211AA0B77000036974 /* DNDTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FE1201AA0B77000036974 /* DNDTaskHandler.swift */; };
+		1FFAA4C11AA4F749004FB813 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFAA4C01AA4F749004FB813 /* Extensions.swift */; };
+		1FFAA4C51AA8D319004FB813 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFAA4C41AA8D319004FB813 /* Placeholder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		1F6FE1141AA0B5BD00036974 /* Drag_And_DoneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drag_And_DoneTests.swift; sourceTree = "<group>"; };
 		1F6FE11E1AA0B5EA00036974 /* DragAndDoneMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDoneMainViewController.swift; sourceTree = "<group>"; };
 		1F6FE1201AA0B77000036974 /* DNDTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDTaskHandler.swift; sourceTree = "<group>"; };
+		1FFAA4C01AA4F749004FB813 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1FFAA4C41AA8D319004FB813 /* Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +92,9 @@
 				1F6FE1021AA0B5BD00036974 /* Main.storyboard */,
 				1F6FE1201AA0B77000036974 /* DNDTaskHandler.swift */,
 				1F58E36F1AA20864001CF7CA /* DNDColors.swift */,
+				1FFAA4C41AA8D319004FB813 /* Placeholder.swift */,
 				1F58E3731AA20B66001CF7CA /* DNDTaskView.swift */,
+				1FFAA4C01AA4F749004FB813 /* Extensions.swift */,
 				1F6FE1051AA0B5BD00036974 /* Images.xcassets */,
 				1F6FE1071AA0B5BD00036974 /* LaunchScreen.xib */,
 				1F6FE0FC1AA0B5BD00036974 /* Supporting Files */,
@@ -224,8 +230,10 @@
 				1F6FE0FF1AA0B5BD00036974 /* AppDelegate.swift in Sources */,
 				1F58E3741AA20B66001CF7CA /* DNDTaskView.swift in Sources */,
 				1F58E3701AA20864001CF7CA /* DNDColors.swift in Sources */,
+				1FFAA4C11AA4F749004FB813 /* Extensions.swift in Sources */,
 				1F6FE1211AA0B77000036974 /* DNDTaskHandler.swift in Sources */,
 				1F6FE11F1AA0B5EA00036974 /* DragAndDoneMainViewController.swift in Sources */,
+				1FFAA4C51AA8D319004FB813 /* Placeholder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,4 +16,21 @@ struct DNDColors {
     static var freakoOrange: UIColor = UIColor(red: 0.973, green: 0.580, blue: 0.024, alpha: 1.000)
     static var freakoRed: UIColor = UIColor(red: 0.886, green: 0.231, blue: 0.149, alpha: 1.000)
     static var freakoYellow: UIColor = UIColor(red: 0.953, green: 0.792, blue: 0.153, alpha: 1.000)
+    
+    static var allColorStrings = ["freakoGreen", "freakoDarkBlue", "freakoViolet", "freakoBlue", "freakoOrange", "freakoRed", "freakoYellow"]
+    
+    func colorFromString(colorString: String) -> UIColor
+    {
+        switch colorString
+        {
+        case "freakoGreen": return DNDColors.freakoGreen
+        case "freakoDarkBlue": return DNDColors.freakoDarkBlue
+        case "freakoViolet": return DNDColors.freakoViolet
+        case "freakoBlue": return DNDColors.freakoBlue
+        case "freakoOrange": return DNDColors.freakoOrange
+        case "freakoRed": return DNDColors.freakoRed
+        case "freakoYellow": return DNDColors.freakoYellow
+        default: return UIColor.blackColor()
+        }
+    }
 }

@@ -8,10 +8,17 @@
 
 import UIKit
 
-class DNDTaskView: UIView {
+class DNDTaskView: UIView {    
     var taskColor:UIColor = DNDColors.freakoBlue
-    var taskShortName = "D D"
-    var taskFullName = "Drag Done"
+
+    var task:DNDTask? {
+        didSet {
+            println("TASK SET \(task) \(self)")
+            updateView()
+        }
+    }
+    
+    var shortNameLabel:UILabel!
     
     override init() {
         super.init()
@@ -31,6 +38,9 @@ class DNDTaskView: UIView {
     func commonInit()
     {
         self.backgroundColor = UIColor.clearColor()
+        shortNameLabel = UILabel()
+        self.addSubview(shortNameLabel)
+        shortNameLabel.textColor = UIColor.whiteColor()
     }
     
     override func drawRect(rect: CGRect) {
@@ -38,6 +48,17 @@ class DNDTaskView: UIView {
         self.taskColor.setFill()
         CGContextFillEllipseInRect(context, self.bounds)
         
-        (taskShortName as NSString).drawAtPoint(self.bounds.origin, withAttributes: nil)
+    }
+    
+    override func setNeedsDisplay() {
+        super.setNeedsDisplay()
+        updateView()
+    }
+    
+    func updateView()
+    {
+        shortNameLabel?.text = task?.shortName
+        shortNameLabel?.sizeToFit()
+        shortNameLabel?.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2)
     }
 }

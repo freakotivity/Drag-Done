@@ -48,6 +48,8 @@ class DragAndDoneMainViewController: UIViewController {
         //        taskHandler.createTaskNamed("Spork Away", imageName: "")
         //        println("PLIST: \(taskHandler.plist())")
         
+        let placeHolderTap = UITapGestureRecognizer(target: self, action: "tappedPlaceHolder:")
+        placeHolder.addGestureRecognizer(placeHolderTap)
         placeHolder.backgroundColor = UIColor.clearColor()
         self.view.addSubview(placeHolder)
         
@@ -66,6 +68,14 @@ class DragAndDoneMainViewController: UIViewController {
         titleLabel.font = UIFont(name: "Helvetica Neue", size: 20)
         
         taskViewSize = (self.view.bounds.size.height - topBarHeight) / 5
+        
+        let addFolderButton = UIButton(frame: CGRectMake(0, 0, 44, 44))
+        addFolderButton.setTitle("+", forState: UIControlState.Normal)
+        addFolderButton.addTarget(self, action: "addFolder:", forControlEvents: UIControlEvents.TouchUpInside)
+        addFolderButton.center = CGPointMake(self.view.bounds.size.width - 23, topBarHeight - addFolderButton.bounds.size.height / 2)
+        topBarView.addSubview(addFolderButton)
+
+        
         todoXPosition = self.view.bounds.size.width / 4
         doneXPosition = self.view.bounds.size.width * 3 / 4
         
@@ -75,6 +85,54 @@ class DragAndDoneMainViewController: UIViewController {
         loadCurrentFolder()
         refreshUI()
     }
+    
+    func addFolder(sender: UIButton)
+    {
+        println("ADD FOLDER: \(sender)")
+        let addFolderAction = UIAlertController(title: "Add Folder", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        addFolderAction.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.Default) { (action) -> Void in
+            println("ADD \((addFolderAction.textFields?.first as UITextField).text)")
+            self.taskHandler.createFolderNamed((addFolderAction.textFields?.first as UITextField).text, select: true, overwrite: true)
+            self.loadCurrentFolder()
+            
+        }
+        addFolderAction.addAction(cancelAction)
+        addFolderAction.addAction(addAction)
+        self.presentViewController(addFolderAction, animated: true, completion: nil)
+    }
+    
+    func tappedPlaceHolder(tap: UITapGestureRecognizer)
+    {
+        println("TAPPED PLACEHOLDER")
+        let addTaskAction = UIAlertController(title: "Add Task", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+        addTaskAction.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.Default) { (action) -> Void in
+            println("ADD \((addTaskAction.textFields?.first as UITextField).text)")
+            self.taskHandler.createTaskNamed((addTaskAction.textFields?.first as UITextField).text, imageName: "")
+            self.loadCurrentFolder()
+            
+        }
+        addTaskAction.addAction(cancelAction)
+        addTaskAction.addAction(addAction)
+        self.presentViewController(addTaskAction, animated: true, completion: nil)
+    }
+    
+    func handleLongPress(lp: UILongPressGestureRecognizer)
+    {
+        println("LONG PRESS! START DANCING!")
+        for tv in taskViews
+        {
+            tv.startDancing()
+        }
+    }
+    
     @IBAction func handlePan(pan: UIPanGestureRecognizer)
     {
         if let pannedView = pan.view as? DNDTaskView
@@ -142,6 +200,8 @@ class DragAndDoneMainViewController: UIViewController {
                 counter += 1.0
             }
         }
+        placeHolder.bounds.size = CGSizeMake(taskViewSize, taskViewSize)
+        placeHolder.center = CGPointMake(todoXPosition, firstY - (taskViewSize * counter))
         
         for dtv in doneTaskViews
         {
@@ -194,6 +254,9 @@ class DragAndDoneMainViewController: UIViewController {
                 let panRec = UIPanGestureRecognizer(target: self, action: "handlePan:")
                 tv.addGestureRecognizer(panRec)
                 
+                let longPress = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+                tv.addGestureRecognizer(longPress)
+                
                 tv.center.y = entryPoint
                 tv.center.x = tv.task!.done ? doneXPosition : todoXPosition
                 
@@ -205,12 +268,10 @@ class DragAndDoneMainViewController: UIViewController {
                     doneTaskViews.append(tv)
                 }
             }
-            if tasks.count == 0
+            if tasks.count < 4
             {
                 println("TASK COUNT NOLL!!")
                 placeHolder.frame.size = CGSizeMake(taskViewSize * 0.8, taskViewSize * 0.8)
-                placeHolder.center = CGPointMake(todoXPosition, self.view.frame.size.height - (taskViewSize / 2))
-                
                 placeHolder.popUp()
             } else {
                 placeHolder.center = CGPointMake(-666, -666)

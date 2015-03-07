@@ -9,6 +9,12 @@
 import UIKit
 
 extension UIView {
+    func startDancing()
+    {
+        UIView.animateWithDuration(0.2, delay: 0.0, options: UIViewAnimationOptions.Autoreverse | UIViewAnimationOptions.Repeat | UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+            self.transform = CGAffineTransformMakeRotation(0.2)
+        }, completion: nil)
+    }
     
     func popUp()
     {

@@ -13,7 +13,7 @@ class DNDTaskView: UIView {
 
     var task:DNDTask? {
         didSet {
-            println("TASK SET \(task) \(self)")
+            //println("TASK SET \(task) \(self)")
             updateView()
         }
     }
@@ -46,8 +46,10 @@ class DNDTaskView: UIView {
     override func drawRect(rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         self.taskColor.setFill()
-        CGContextFillEllipseInRect(context, self.bounds)
+        UIColor.blackColor().setStroke()
         
+        CGContextFillEllipseInRect(context, self.bounds)
+        CGContextStrokeEllipseInRect(context, self.bounds)
     }
     
     override func setNeedsDisplay() {

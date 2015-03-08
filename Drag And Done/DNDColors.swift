@@ -19,7 +19,7 @@ struct DNDColors {
     
     static var allColorStrings = ["freakoGreen", "freakoDarkBlue", "freakoViolet", "freakoBlue", "freakoOrange", "freakoRed", "freakoYellow"]
     
-    func colorFromString(colorString: String) -> UIColor
+    static func colorFromString(colorString: String) -> UIColor
     {
         switch colorString
         {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1F58E3701AA20864001CF7CA /* DNDColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58E36F1AA20864001CF7CA /* DNDColors.swift */; };
 		1F58E3741AA20B66001CF7CA /* DNDTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F58E3731AA20B66001CF7CA /* DNDTaskView.swift */; };
+		1F63FBEE1AAC62CB00818455 /* DNDFolderDotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F63FBED1AAC62CB00818455 /* DNDFolderDotView.swift */; };
 		1F6FE0FF1AA0B5BD00036974 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FE0FE1AA0B5BD00036974 /* AppDelegate.swift */; };
 		1F6FE1041AA0B5BD00036974 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F6FE1021AA0B5BD00036974 /* Main.storyboard */; };
 		1F6FE1061AA0B5BD00036974 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F6FE1051AA0B5BD00036974 /* Images.xcassets */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		1F58E36F1AA20864001CF7CA /* DNDColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDColors.swift; sourceTree = "<group>"; };
 		1F58E3731AA20B66001CF7CA /* DNDTaskView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDTaskView.swift; sourceTree = "<group>"; };
+		1F63FBED1AAC62CB00818455 /* DNDFolderDotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDFolderDotView.swift; sourceTree = "<group>"; };
 		1F6FE0F91AA0B5BD00036974 /* Drag And Done.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drag And Done.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F6FE0FD1AA0B5BD00036974 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F6FE0FE1AA0B5BD00036974 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				1FFAA4C41AA8D319004FB813 /* Placeholder.swift */,
 				1F58E3731AA20B66001CF7CA /* DNDTaskView.swift */,
 				1FFAA4C01AA4F749004FB813 /* Extensions.swift */,
+				1F63FBED1AAC62CB00818455 /* DNDFolderDotView.swift */,
 				1F6FE1051AA0B5BD00036974 /* Images.xcassets */,
 				1F6FE1071AA0B5BD00036974 /* LaunchScreen.xib */,
 				1F6FE0FC1AA0B5BD00036974 /* Supporting Files */,
@@ -232,6 +235,7 @@
 				1F58E3701AA20864001CF7CA /* DNDColors.swift in Sources */,
 				1FFAA4C11AA4F749004FB813 /* Extensions.swift in Sources */,
 				1F6FE1211AA0B77000036974 /* DNDTaskHandler.swift in Sources */,
+				1F63FBEE1AAC62CB00818455 /* DNDFolderDotView.swift in Sources */,
 				1F6FE11F1AA0B5EA00036974 /* DragAndDoneMainViewController.swift in Sources */,
 				1FFAA4C51AA8D319004FB813 /* Placeholder.swift in Sources */,
 			);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--Drag And Done Main View Controller-->
@@ -15,8 +15,32 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oug-c0-6Q0" customClass="DNDActionArrow" customModule="Drag_And_Done" customModuleProvider="target">
+                                <rect key="frame" x="275" y="542" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="kb6-9j-hdT"/>
+                                    <constraint firstAttribute="height" constant="50" id="oe3-LR-VSN"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9tO-xd-EnG" appends="YES" id="auR-wE-P59"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oug-c0-6Q0" secondAttribute="trailing" id="gBy-rF-ZVL"/>
+                            <constraint firstAttribute="centerX" secondItem="oug-c0-6Q0" secondAttribute="centerX" id="qEt-xn-oYg"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oug-c0-6Q0" secondAttribute="bottom" constant="8" symbolic="YES" id="ssg-iR-nQk"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gBy-rF-ZVL"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bKb-vM-KNh" appends="YES" id="VHH-SQ-o7y"/>
                         </connections>
@@ -28,6 +52,11 @@
                         <action selector="handlePan:" destination="BYZ-38-t0r" id="fsJ-Fh-0T6"/>
                     </connections>
                 </panGestureRecognizer>
+                <tapGestureRecognizer id="9tO-xd-EnG">
+                    <connections>
+                        <action selector="tappedActionArrow:" destination="BYZ-38-t0r" id="Spy-pj-lmC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
         </scene>
     </scenes>

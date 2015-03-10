@@ -54,6 +54,7 @@ class DragAndDoneMainViewController: UIViewController {
         placeHolder.addGestureRecognizer(placeHolderTap)
         placeHolder.backgroundColor = UIColor.clearColor()
         self.view.addSubview(placeHolder)
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         
         
     }
@@ -98,7 +99,10 @@ class DragAndDoneMainViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.Default) { (action) -> Void in
             //println("ADD \((addFolderAction.textFields?.first as UITextField).text)")
+            self.showsTopPage = false
+            self.showsBottomPage = false
             self.taskHandler.createFolderNamed((addFolderAction.textFields?.first as UITextField).text, select: true, overwrite: true)
+            self.clearTaskViews()
             self.loadCurrentFolder()
             
         }
@@ -116,9 +120,31 @@ class DragAndDoneMainViewController: UIViewController {
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
         let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.Default) { (action) -> Void in
-            //println("ADD \((addTaskAction.textFields?.first as UITextField).text)")
-            self.taskHandler.createTaskNamed((addTaskAction.textFields?.first as UITextField).text, imageName: "")
-            self.loadCurrentFolder()
+
+            if let nuTask = self.taskHandler.createTaskNamed((addTaskAction.textFields?.first as UITextField).text, imageName: "") as DNDTask?
+            {
+                let tv = DNDTaskView()
+
+                if let colStr = self.taskHandler.currentFolderColor()
+                {
+                    tv.taskColor = self.colorFromString(colStr)
+                }
+
+                tv.bounds.size = CGSizeMake(self.taskViewSize * 0.99, self.taskViewSize * 0.99)
+                tv.task = nuTask
+                let panRec = UIPanGestureRecognizer(target: self, action: "handlePan:")
+                tv.addGestureRecognizer(panRec)
+                
+                let longPress = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+                tv.addGestureRecognizer(longPress)
+                
+                tv.center.y = self.entryPoint
+                tv.center.x = tv.task!.done ? self.doneXPosition : self.todoXPosition
+                
+                self.view.addSubview(tv)
+                self.taskViews.append(tv)
+                self.arrangeTaskviews()
+            }
             
         }
         addTaskAction.addAction(cancelAction)
@@ -206,18 +232,25 @@ class DragAndDoneMainViewController: UIViewController {
     {
         //println("ARRANGE DOTS")
         self.clearDots()
+        
+        let xPos = self.view.bounds.size.width - 20   //RIGHT
+        //            let xPos = self.view.center.x                 // CENTER
+        //            let xPos:CGFloat = 20.0                         // LEFT
+
+        var spaceBetweenDots:CGFloat = 50.0
+        let bottomY = self.view.bounds.size.height - (self.view.bounds.size.height / 6)
+        var counter:CGFloat = 1.0
+        
+
+
+        
         if let plist = taskHandler.plist() as NSDictionary?
         {
-            //println("YEAH PLIST \(plist.count)")
-//            let xPos = self.view.bounds.size.width - 20   //RIGHT
-//            let xPos = self.view.center.x                 // CENTER
-            let xPos:CGFloat = 20.0                         // LEFT
-
             let numberOfFolders = plist.count + 2
-            let ySpread = self.view.bounds.size.height * 0.7
-            let spaceBetweenDots = ySpread / CGFloat(numberOfFolders)
-            var counter:CGFloat = 1.0
-            
+            let ySpread = self.view.bounds.size.height * 0.5
+            spaceBetweenDots = ySpread / CGFloat(numberOfFolders)
+
+            //println("YEAH PLIST \(plist.count)")
             let statsDot = DNDFolderDotView()
             statsDot.type = .stat
             if showsBottomPage
@@ -228,12 +261,14 @@ class DragAndDoneMainViewController: UIViewController {
             }
             statsDot.backgroundColor = UIColor.clearColor()
             statsDot.frame = CGRectMake(0, 0, 50, 50)
-            statsDot.center = CGPointMake(xPos, self.view.bounds.size.height - (counter * spaceBetweenDots))
+            statsDot.center = CGPointMake(xPos, bottomY - (counter * spaceBetweenDots))
             self.view.addSubview(statsDot)
-            let tap = UITapGestureRecognizer(target: self, action: "tappedDot:")
-            statsDot.addGestureRecognizer(tap)
-
+            let tapStats = UITapGestureRecognizer(target: self, action: "tappedDot:")
+            statsDot.addGestureRecognizer(tapStats)
             
+            counter += 1.0
+            
+
             for (name, folder) in plist
             {
                 //println("FOLDER IN PLIST \(name)")
@@ -249,7 +284,7 @@ class DragAndDoneMainViewController: UIViewController {
                 dot.color = DNDColors.colorFromString(colorString)
                 dot.name = name as String
                 dot.frame = CGRectMake(0, 0, 50, 50)
-                dot.center = CGPointMake(xPos, self.view.bounds.size.height - (counter * spaceBetweenDots))
+                dot.center = CGPointMake(xPos, bottomY - (counter * spaceBetweenDots))
                 self.view.addSubview(dot)
                 
                 let tap = UITapGestureRecognizer(target: self, action: "tappedDot:")
@@ -257,35 +292,49 @@ class DragAndDoneMainViewController: UIViewController {
                 
                 counter += 1.0
             }
-            
-            let plusDot = DNDFolderDotView()
-            plusDot.type = DotType.plus
-            if showsTopPage
-            {
-                plusDot.selected = true
-            } else {
-                plusDot.selected = false
-            }
-            plusDot.backgroundColor = UIColor.clearColor()
-            plusDot.frame = CGRectMake(0, 0, 50, 50)
-            plusDot.center = CGPointMake(xPos, self.view.bounds.size.height - (counter * spaceBetweenDots))
-            self.view.addSubview(plusDot)
-            plusDot.addGestureRecognizer(tap)
-            
         }
+        let plusDot = DNDFolderDotView()
+        plusDot.type = DotType.plus
+        if showsTopPage
+        {
+            plusDot.selected = true
+        } else {
+            plusDot.selected = false
+        }
+        plusDot.backgroundColor = UIColor.clearColor()
+        plusDot.frame = CGRectMake(0, 0, 50, 50)
+        plusDot.center = CGPointMake(xPos, bottomY - (counter * spaceBetweenDots))
+        self.view.addSubview(plusDot)
+        let tapPlus = UITapGestureRecognizer(target: self, action: "tappedDot:")
+        plusDot.addGestureRecognizer(tapPlus)
     }
     
     func tappedDot(tap: UITapGestureRecognizer)
     {
-        for tv in taskViews
-        {
-            tv.exitUp()
-        }
+        println("TAPPED DOT \(tap.view)")
+        clearTaskViews()
+        
         entryPoint = self.view.bounds.size.height + taskViewSize
         
         let dot = tap.view as DNDFolderDotView
-        taskHandler.selectFolderNamed(dot.name)
-        self.loadCurrentFolder()
+        switch dot.type
+        {
+        case .dot:
+            showsTopPage = false
+            showsBottomPage = false
+            taskHandler.selectFolderNamed(dot.name)
+            self.loadCurrentFolder()
+        case .plus:
+            println("ADD FOLDER")
+            showsTopPage = true
+            showsBottomPage = false
+            showTopPage()
+        case .stat:
+            println("SHOW STATS!")
+            showsTopPage = false
+            showsBottomPage = true
+            showBottomPage()
+        }
     }
     
     func arrangeTaskviews()
@@ -378,8 +427,22 @@ class DragAndDoneMainViewController: UIViewController {
             } else {
                 placeHolder.center = CGPointMake(-666, -666)
             }
+        } else {
+            println("NO TASKS!!! D:")
+            hidePlaceholder()
+            showTopPage()
         }
         refreshUI()
+    }
+    
+    func clearTaskViews()
+    {
+        for tv in taskViews
+        {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                tv.exitUp()
+            })
+        }
     }
     
     func nextFolder()
@@ -387,42 +450,41 @@ class DragAndDoneMainViewController: UIViewController {
         println("NEXT FOLDER")
         if !showsTopPage
         {
-            for tv in taskViews
-            {
-                tv.exitUp()
-            }
+            clearTaskViews()
             taskViews.removeAll()
             doneTaskViews.removeAll()
             entryPoint = self.view.bounds.size.height + taskViewSize
             
-            let folders = taskHandler.foldersTitles()
-            if showsBottomPage
+            if let folders = taskHandler.foldersTitles()
             {
-                showsBottomPage = false
-                taskHandler.selectFolderNamed(folders.first!)
-                loadCurrentFolder()
-            } else {
-                if let cfs = taskHandler.currentFolderString() as String?
+                if showsBottomPage
                 {
-                    if let folderIndex = find(folders, taskHandler.currentFolderString()!)
-                    {
-                        println("FOLDERINDEX \(folderIndex) FOLDERS COUNT: \(folders.count)")
-                        if folderIndex == folders.count - 1
-                        {
-                            showsTopPage = true
-                            // TODO: SHOW TOP PAGE
-                            showTopPage()
-                        } else {
-                            showsTopPage = false
-                            taskHandler.selectFolderNamed(folders[folderIndex + 1])
-                            loadCurrentFolder()
-                        }
-                    }
-                } else {
                     showsBottomPage = false
-                    showsTopPage = false
                     taskHandler.selectFolderNamed(folders.first!)
                     loadCurrentFolder()
+                } else {
+                    if let cfs = taskHandler.currentFolderString() as String?
+                    {
+                        if let folderIndex = find(folders, taskHandler.currentFolderString()!)
+                        {
+                            println("FOLDERINDEX \(folderIndex) FOLDERS COUNT: \(folders.count)")
+                            if folderIndex == folders.count - 1
+                            {
+                                showsTopPage = true
+                                // TODO: SHOW TOP PAGE
+                                showTopPage()
+                            } else {
+                                showsTopPage = false
+                                taskHandler.selectFolderNamed(folders[folderIndex + 1])
+                                loadCurrentFolder()
+                            }
+                        }
+                    } else {
+                        showsBottomPage = false
+                        showsTopPage = false
+                        taskHandler.selectFolderNamed(folders.first!)
+                        loadCurrentFolder()
+                    }
                 }
             }
         }
@@ -431,43 +493,42 @@ class DragAndDoneMainViewController: UIViewController {
     func prevFolder()
     {
         println("PREV FOLDER")
-        for tv in taskViews
-        {
-            tv.exitDown()
-        }
-        taskViews.removeAll()
-        doneTaskViews.removeAll()
-        entryPoint = -taskViewSize
         
-        let folders = taskHandler.foldersTitles()
-        if showsTopPage
+        
+        if let folders = taskHandler.foldersTitles()
         {
-            showsTopPage = false
-            showsBottomPage = false
-            taskHandler.selectFolderNamed(folders.last!)
-            loadCurrentFolder()
-        } else {
-            if let cfs = taskHandler.currentFolderString() as String?
+            if !showsBottomPage
             {
-                if let folderIndex = find(folders, taskHandler.currentFolderString()!)
+                println("SHOWS INTE BOTTOM PAGE")
+                for tv in taskViews
                 {
-                    println("FOLDERINDEX \(folderIndex) COUNT \(folders.count)")
-                    if folderIndex == 0
-                    {
-                        showsBottomPage = true
-                        // TODO: SHOW BOTTOM PAGE
-                        showBottomPage()
-                    } else {
-                        showsBottomPage = false
-                        taskHandler.selectFolderNamed(folders[folderIndex - 1])
-                        loadCurrentFolder()
-                    }
+                    tv.exitDown()
                 }
-            } else {
-                showsBottomPage = false
-                showsTopPage = false
-                taskHandler.selectFolderNamed(folders.last!)
-                loadCurrentFolder()
+                taskViews.removeAll()
+                doneTaskViews.removeAll()
+                entryPoint = -taskViewSize
+                if let cfs = taskHandler.currentFolderString() as String?
+                {
+                    if let folderIndex = find(folders, taskHandler.currentFolderString()!)
+                    {
+                        println("FOLDERINDEX \(folderIndex) COUNT \(folders.count)")
+                        if folderIndex == 0
+                        {
+                            showsBottomPage = true
+                            // TODO: SHOW BOTTOM PAGE
+                            showBottomPage()
+                        } else {
+                            showsBottomPage = false
+                            taskHandler.selectFolderNamed(folders[folderIndex - 1])
+                            loadCurrentFolder()
+                        }
+                    }
+                } else {
+                    showsBottomPage = false
+                    showsTopPage = false
+                    taskHandler.selectFolderNamed(folders.last!)
+                    loadCurrentFolder()
+                }
             }
         }
         
@@ -475,6 +536,8 @@ class DragAndDoneMainViewController: UIViewController {
     
     func showBottomPage()
     {
+        showsTopPage = false
+        showsBottomPage = true
         taskHandler.unselectCurrentFolder()
         topBarView.backgroundColor = UIColor.brownColor()
         setTitle("STATS MAYBE?")
@@ -483,6 +546,8 @@ class DragAndDoneMainViewController: UIViewController {
     
     func showTopPage()
     {
+        showsTopPage = true
+        showsBottomPage = false
         taskHandler.unselectCurrentFolder()
         topBarView.backgroundColor = UIColor.blackColor()
         setTitle("ADD FOLDER")
@@ -496,9 +561,31 @@ class DragAndDoneMainViewController: UIViewController {
     
     func setTitle(title: String)
     {
+        println("SET TITLE \(title)")
         titleLabel.text = title
         titleLabel.sizeToFit()
         titleLabel.center.x = self.view.center.x
-        
+        titleLabel.center.y = topBarHeight - (titleLabel.bounds.size.height / 2)
+    }
+    @IBAction func tappedActionArrow(tap: UITapGestureRecognizer) {
+        println("TAPPED ACTION ARROW")
+        let actionSheet = UIAlertController(title: "Forky Title", message: "Forky Message", preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let defaultAction = UIAlertAction(title: "Forky Default", style: UIAlertActionStyle.Default) { (action) -> Void in
+            println("first action DEFAULT")
+        }
+        let defaultSecond = UIAlertAction(title: "Forky Second", style: UIAlertActionStyle.Default) { (action) -> Void in
+            println("first action DEFAULT 2")
+        }
+        let cancelAction = UIAlertAction(title: "Forky Cancel", style: UIAlertActionStyle.Cancel) { (action) -> Void in
+            println("second action CANCEL")
+        }
+        let destructiveAction = UIAlertAction(title: "Forky Destructive", style: UIAlertActionStyle.Destructive) { (action) -> Void in
+            println("third action DESTRUCTIVE")
+        }
+        actionSheet.addAction(defaultAction)
+        actionSheet.addAction(defaultSecond)
+        actionSheet.addAction(cancelAction)
+        actionSheet.addAction(destructiveAction)
+        presentViewController(actionSheet, animated: true, completion: nil)
     }
 }

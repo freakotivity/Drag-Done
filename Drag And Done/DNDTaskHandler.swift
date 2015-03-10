@@ -127,11 +127,16 @@ class DNDTaskHandler
         return nil
     }
     
-    func foldersTitles() -> Array<String>
+    func foldersTitles() -> Array<String>?
     {
-        var myPlist:NSMutableDictionary!
-        myPlist = NSMutableDictionary(contentsOfFile: plistPath())
-        return myPlist.allKeys as Array<String>
+        if let myPlist = NSDictionary(contentsOfFile: plistPath())
+        {
+            if let titles = myPlist.allKeys as? Array<String>
+            {
+            return titles
+            }
+        }
+        return nil
     }
     
     func plist() ->NSDictionary?
@@ -181,7 +186,7 @@ class DNDTaskHandler
         return myPlist.writeToFile(plistPath(), atomically: true)
     }
     
-    func createTaskNamed(name: String, imageName: String) -> Bool
+    func createTaskNamed(name: String, imageName: String) -> DNDTask?
     {
         //println("CREATE TASK NAMED \(name)")
         var myPlist = NSMutableDictionary(contentsOfFile: plistPath())
@@ -190,13 +195,15 @@ class DNDTaskHandler
             //println("YES LET")
             var foldrr = folder
             var tasks = foldrr["tasks"] as NSMutableArray
-            tasks.addObject(DNDTask(done: false, name: name, imageName: imageName, taskID: randomStringWithLength(10)).toDictionary)
+            let nuTask = DNDTask(done: false, name: name, imageName: imageName, taskID: randomStringWithLength(10))
+            tasks.addObject(nuTask.toDictionary)
             foldrr.setObject(tasks, forKey: "tasks")
             myPlist?.setObject(foldrr, forKey: currentFolderString()!)
             myPlist?.writeToFile(plistPath(), atomically: true)
+            return nuTask
         }
         
-        return false
+        return nil
     }
     
     func tasks() -> Array<DNDTask>?

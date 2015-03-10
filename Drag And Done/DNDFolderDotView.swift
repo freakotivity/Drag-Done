@@ -41,7 +41,7 @@ class DNDFolderDotView: UIView {
             CGContextAddLineToPoint(context, dotRect.origin.x + (dotRect.size.width / 2), dotRect.origin.y + dotRect.size.height)
             CGContextStrokePath(context)
         case .stat:
-            println("stat")
+            CGContextFillRect(context, dotRect)
         }
         
     }

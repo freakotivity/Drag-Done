@@ -49,7 +49,7 @@ class DNDTaskView: UIView {
         UIColor.blackColor().setStroke()
         
         CGContextFillEllipseInRect(context, self.bounds)
-        CGContextStrokeEllipseInRect(context, self.bounds)
+//        CGContextStrokeEllipseInRect(context, self.bounds)
     }
     
     override func setNeedsDisplay() {

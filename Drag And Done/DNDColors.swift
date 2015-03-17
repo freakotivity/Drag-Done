@@ -8,6 +8,10 @@
 
 import UIKit
 
+class RainbowColors: UIView {
+    let chooseRedColor = FreakoColors.drawFreakoRedCircle()
+}
+
 struct DNDColors {
     static var freakoGreen: UIColor = UIColor(red: 0.102, green: 0.706, blue: 0.267, alpha: 1.000)
     static var freakoDarkBlue: UIColor = UIColor(red: 0.227, green: 0.286, blue: 0.706, alpha: 1.000)

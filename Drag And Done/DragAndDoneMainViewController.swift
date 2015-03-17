@@ -23,8 +23,8 @@ class DragAndDoneMainViewController: UIViewController {
     var doneXPosition:CGFloat!
     var taskViews = [DNDTaskView]()
     var doneTaskViews = [DNDTaskView]()
-    let topBarView = UIView()
-    let titleLabel = UILabel()
+//    let topBarView = UIView()
+//    let titleLabel = UILabel()
     var entryPoint:CGFloat!
     let placeHolder = Placeholder()
 //    var showsTopPage = false
@@ -69,14 +69,14 @@ class DragAndDoneMainViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        topBarView.frame = CGRectMake(0, 0, self.view.bounds.size.width, topBarHeight)
-        topBarView.backgroundColor = DNDColors.freakoGreen
-        topBarView.layer.zPosition = ZOrder.Topbar
-        self.view.addSubview(topBarView)
-        
-        topBarView.addSubview(titleLabel)
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.font = UIFont(name: "Helvetica Neue", size: 20)
+//        topBarView.frame = CGRectMake(0, 0, self.view.bounds.size.width, topBarHeight)
+//        topBarView.backgroundColor = DNDColors.freakoGreen
+//        topBarView.layer.zPosition = ZOrder.Topbar
+//        self.view.addSubview(topBarView)
+//        
+//        topBarView.addSubview(titleLabel)
+//        titleLabel.textColor = UIColor.whiteColor()
+//        titleLabel.font = UIFont(name: "Helvetica Neue", size: 20)
         
         taskViewSize = (self.view.bounds.size.height - topBarHeight) / 6
         println("TASK VIEW SIZE \(taskViewSize)")
@@ -94,21 +94,22 @@ class DragAndDoneMainViewController: UIViewController {
     func addFolder()
     {
         //println("ADD FOLDER: \(sender)")
-        let addFolderAction = UIAlertController(title: "Add Folder", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-        addFolderAction.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-        let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.Default) { (action) -> Void in
-            //println("ADD \((addFolderAction.textFields?.first as UITextField).text)")
-            self.taskHandler.createFolderNamed((addFolderAction.textFields?.first as UITextField).text, select: true, overwrite: true)
-            self.clearTaskViews()
-            self.loadCurrentFolder()
-            
-        }
-        addFolderAction.addAction(cancelAction)
-        addFolderAction.addAction(addAction)
-        self.presentViewController(addFolderAction, animated: true, completion: nil)
+//        let addFolderAction = UIAlertController(title: "Add Folder", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+//        addFolderAction.addTextFieldWithConfigurationHandler { (textField) -> Void in
+//            
+//        }
+//        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+//        let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.Default) { (action) -> Void in
+//            //println("ADD \((addFolderAction.textFields?.first as UITextField).text)")
+//            self.taskHandler.createFolderNamed((addFolderAction.textFields?.first as UITextField).text, select: true, overwrite: true)
+//            self.clearTaskViews()
+//            self.loadCurrentFolder()
+//            
+//        }
+//        addFolderAction.addAction(cancelAction)
+//        addFolderAction.addAction(addAction)
+//        self.presentViewController(addFolderAction, animated: true, completion: nil)
+        self.performSegueWithIdentifier("Add Folder", sender: nil)
     }
     
     func tappedPlaceHolder(tap: UITapGestureRecognizer)
@@ -119,42 +120,43 @@ class DragAndDoneMainViewController: UIViewController {
     
     func addTask()
     {
-        let addTaskAction = UIAlertController(title: "Add Task", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-        addTaskAction.addTextFieldWithConfigurationHandler { (textField) -> Void in
-            
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-        let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.Default) { (action) -> Void in
-            
-            if let nuTask = self.taskHandler.createTaskNamed((addTaskAction.textFields?.first as UITextField).text, imageName: "") as DNDTask?
-            {
-                let tv = DNDTaskView()
-                
-                if let colStr = self.taskHandler.currentFolderColor()
-                {
-                    tv.taskColor = self.colorFromString(colStr)
-                }
-                
-                tv.bounds.size = CGSizeMake(self.taskViewSize * 0.99, self.taskViewSize * 0.99)
-                tv.task = nuTask
-                let panRec = UIPanGestureRecognizer(target: self, action: "handlePan:")
-                tv.addGestureRecognizer(panRec)
-                
-                let longPress = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
-                tv.addGestureRecognizer(longPress)
-                
-                tv.center.y = self.entryPoint
-                tv.center.x = tv.task!.done ? self.doneXPosition : self.todoXPosition
-                tv.layer.zPosition = ZOrder.Taskviews
-                self.view.addSubview(tv)
-                self.taskViews.append(tv)
-                self.arrangeTaskviews()
-            }
-            
-        }
-        addTaskAction.addAction(cancelAction)
-        addTaskAction.addAction(addAction)
-        self.presentViewController(addTaskAction, animated: true, completion: nil)
+//        let addTaskAction = UIAlertController(title: "Add Task", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+//        addTaskAction.addTextFieldWithConfigurationHandler { (textField) -> Void in
+//            
+//        }
+//        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+//        let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.Default) { (action) -> Void in
+//            
+//            if let nuTask = self.taskHandler.createTaskNamed((addTaskAction.textFields?.first as UITextField).text, imageName: "") as DNDTask?
+//            {
+//                let tv = DNDTaskView()
+//                
+//                if let colStr = self.taskHandler.currentFolderColor()
+//                {
+//                    tv.taskColor = self.colorFromString(colStr)
+//                }
+//                
+//                tv.bounds.size = CGSizeMake(self.taskViewSize * 0.99, self.taskViewSize * 0.99)
+//                tv.task = nuTask
+//                let panRec = UIPanGestureRecognizer(target: self, action: "handlePan:")
+//                tv.addGestureRecognizer(panRec)
+//                
+//                let longPress = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+//                tv.addGestureRecognizer(longPress)
+//                
+//                tv.center.y = self.entryPoint
+//                tv.center.x = tv.task!.done ? self.doneXPosition : self.todoXPosition
+//                tv.layer.zPosition = ZOrder.Taskviews
+//                self.view.addSubview(tv)
+//                self.taskViews.append(tv)
+//                self.arrangeTaskviews()
+//            }
+//            
+//        }
+//        addTaskAction.addAction(cancelAction)
+//        addTaskAction.addAction(addAction)
+//        self.presentViewController(addTaskAction, animated: true, completion: nil)
+        self.performSegueWithIdentifier("Add Task", sender: nil)
     }
     
     func handleLongPress(lp: UILongPressGestureRecognizer)
@@ -341,7 +343,7 @@ class DragAndDoneMainViewController: UIViewController {
             }
         }
         
-        if taskViews.count < 5
+        if taskViews.count < 5 && taskHandler.currentFolderString() != nil
         {
             println("MINDRE ÄN FEM TASKS")
         placeHolder.bounds.size = CGSizeMake(taskViewSize, taskViewSize)
@@ -380,14 +382,16 @@ class DragAndDoneMainViewController: UIViewController {
         
         if let folderString = taskHandler.currentFolderString() as String?
         {
-        setTitle(folderString)
+//        setTitle(folderString)
+            self.title = folderString
         }
         
         var clr:UIColor!
         if let colStr = taskHandler.currentFolderColor()
         {
             clr = colorFromString(colStr)
-            topBarView.backgroundColor = clr
+            navigationController?.navigationBar.barTintColor = clr
+//            topBarView.backgroundColor = clr
         }
         
         if let tasks = taskHandler.tasks()
@@ -526,14 +530,6 @@ class DragAndDoneMainViewController: UIViewController {
         placeHolder.center = CGPointMake(-placeHolder.bounds.size.width, -placeHolder.bounds.size.height)
     }
     
-    func setTitle(title: String)
-    {
-        println("SET TITLE \(title)")
-        titleLabel.text = title
-        titleLabel.sizeToFit()
-        titleLabel.center.x = self.view.center.x
-        titleLabel.center.y = topBarHeight - titleLabel.bounds.size.height
-    }
     @IBAction func tappedActionArrow(tap: UITapGestureRecognizer) {
         println("TAPPED ACTION ARROW")
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -547,9 +543,11 @@ class DragAndDoneMainViewController: UIViewController {
         }
         let editFolder = UIAlertAction(title: "Edit Folder", style: UIAlertActionStyle.Default) { (action) -> Void in
             println("EDIT FOLDER")
+            self.performSegueWithIdentifier("Edit Folder", sender: nil)
         }
         let editTasks = UIAlertAction(title: "Edit Tasks", style: UIAlertActionStyle.Default) { (action) -> Void in
             println("EDIT TASKS")
+            self.performSegueWithIdentifier("Add Task", sender: nil)
         }
         let settings = UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default) { (action) -> Void in
             println("SETTINGS")

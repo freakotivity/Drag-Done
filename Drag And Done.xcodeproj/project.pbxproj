@@ -20,6 +20,8 @@
 		1F6FE1211AA0B77000036974 /* DNDTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FE1201AA0B77000036974 /* DNDTaskHandler.swift */; };
 		1FFAA4C11AA4F749004FB813 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFAA4C01AA4F749004FB813 /* Extensions.swift */; };
 		1FFAA4C51AA8D319004FB813 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFAA4C41AA8D319004FB813 /* Placeholder.swift */; };
+		C05FBAC31AB8971B00F66A45 /* IOSIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05FBAC21AB8971B00F66A45 /* IOSIcons.swift */; };
+		C07AA1F31AB5CE970012AC52 /* FreakoColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07AA1F21AB5CE970012AC52 /* FreakoColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		1F6FE1201AA0B77000036974 /* DNDTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDTaskHandler.swift; sourceTree = "<group>"; };
 		1FFAA4C01AA4F749004FB813 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1FFAA4C41AA8D319004FB813 /* Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
+		C05FBAC21AB8971B00F66A45 /* IOSIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IOSIcons.swift; path = ../IOSIcons.swift; sourceTree = "<group>"; };
+		C07AA1F21AB5CE970012AC52 /* FreakoColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FreakoColors.swift; path = ../FreakoColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 				1F6FE1021AA0B5BD00036974 /* Main.storyboard */,
 				1F6FE1201AA0B77000036974 /* DNDTaskHandler.swift */,
 				1F58E36F1AA20864001CF7CA /* DNDColors.swift */,
+				C05FBAC21AB8971B00F66A45 /* IOSIcons.swift */,
+				C07AA1F21AB5CE970012AC52 /* FreakoColors.swift */,
 				1FFAA4C41AA8D319004FB813 /* Placeholder.swift */,
 				1F58E3731AA20B66001CF7CA /* DNDTaskView.swift */,
 				1FFAA4C01AA4F749004FB813 /* Extensions.swift */,
@@ -238,7 +244,9 @@
 				1F58E3701AA20864001CF7CA /* DNDColors.swift in Sources */,
 				1FFAA4C11AA4F749004FB813 /* Extensions.swift in Sources */,
 				1F6FE1211AA0B77000036974 /* DNDTaskHandler.swift in Sources */,
+				C07AA1F31AB5CE970012AC52 /* FreakoColors.swift in Sources */,
 				1F63FBEE1AAC62CB00818455 /* DNDFolderDotView.swift in Sources */,
+				C05FBAC31AB8971B00F66A45 /* IOSIcons.swift in Sources */,
 				1F6FE11F1AA0B5EA00036974 /* DragAndDoneMainViewController.swift in Sources */,
 				1F34E25B1AAF1B8B002CC12B /* DNDActionArrow.swift in Sources */,
 				1FFAA4C51AA8D319004FB813 /* Placeholder.swift in Sources */,

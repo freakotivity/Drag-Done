@@ -257,87 +257,87 @@ public class FreakoColors : NSObject {
         return Cache.imageOfCheckInACircle!
     }
 
-    //// Customization Infrastructure
-
-    @IBOutlet var freakoRedCircleTargets: [AnyObject]! {
-        get { return Cache.freakoRedCircleTargets }
-        set {
-            Cache.freakoRedCircleTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(FreakoColors.imageOfFreakoRedCircle)
-            }
-        }
-    }
-
-    @IBOutlet var freakoOrangeCircleTargets: [AnyObject]! {
-        get { return Cache.freakoOrangeCircleTargets }
-        set {
-            Cache.freakoOrangeCircleTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(FreakoColors.imageOfFreakoOrangeCircle)
-            }
-        }
-    }
-
-    @IBOutlet var freakoYellowCircleTargets: [AnyObject]! {
-        get { return Cache.freakoYellowCircleTargets }
-        set {
-            Cache.freakoYellowCircleTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(FreakoColors.imageOfFreakoYellowCircle)
-            }
-        }
-    }
-
-    @IBOutlet var freakoGreenCircleTargets: [AnyObject]! {
-        get { return Cache.freakoGreenCircleTargets }
-        set {
-            Cache.freakoGreenCircleTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(FreakoColors.imageOfFreakoGreenCircle)
-            }
-        }
-    }
-
-    @IBOutlet var freakoBlueCircleTargets: [AnyObject]! {
-        get { return Cache.freakoBlueCircleTargets }
-        set {
-            Cache.freakoBlueCircleTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(FreakoColors.imageOfFreakoBlueCircle)
-            }
-        }
-    }
-
-    @IBOutlet var freakoDarkBlueCircleTargets: [AnyObject]! {
-        get { return Cache.freakoDarkBlueCircleTargets }
-        set {
-            Cache.freakoDarkBlueCircleTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(FreakoColors.imageOfFreakoDarkBlueCircle)
-            }
-        }
-    }
-
-    @IBOutlet var freakoVioletCircleTargets: [AnyObject]! {
-        get { return Cache.freakoVioletCircleTargets }
-        set {
-            Cache.freakoVioletCircleTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(FreakoColors.imageOfFreakoVioletCircle)
-            }
-        }
-    }
-
-    @IBOutlet var checkInACircleTargets: [AnyObject]! {
-        get { return Cache.checkInACircleTargets }
-        set {
-            Cache.checkInACircleTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(FreakoColors.imageOfCheckInACircle)
-            }
-        }
-    }
+//    //// Customization Infrastructure
+//
+//    @IBOutlet var freakoRedCircleTargets: [AnyObject]! {
+//        get { return Cache.freakoRedCircleTargets }
+//        set {
+//            Cache.freakoRedCircleTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(FreakoColors.imageOfFreakoRedCircle)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var freakoOrangeCircleTargets: [AnyObject]! {
+//        get { return Cache.freakoOrangeCircleTargets }
+//        set {
+//            Cache.freakoOrangeCircleTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(FreakoColors.imageOfFreakoOrangeCircle)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var freakoYellowCircleTargets: [AnyObject]! {
+//        get { return Cache.freakoYellowCircleTargets }
+//        set {
+//            Cache.freakoYellowCircleTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(FreakoColors.imageOfFreakoYellowCircle)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var freakoGreenCircleTargets: [AnyObject]! {
+//        get { return Cache.freakoGreenCircleTargets }
+//        set {
+//            Cache.freakoGreenCircleTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(FreakoColors.imageOfFreakoGreenCircle)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var freakoBlueCircleTargets: [AnyObject]! {
+//        get { return Cache.freakoBlueCircleTargets }
+//        set {
+//            Cache.freakoBlueCircleTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(FreakoColors.imageOfFreakoBlueCircle)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var freakoDarkBlueCircleTargets: [AnyObject]! {
+//        get { return Cache.freakoDarkBlueCircleTargets }
+//        set {
+//            Cache.freakoDarkBlueCircleTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(FreakoColors.imageOfFreakoDarkBlueCircle)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var freakoVioletCircleTargets: [AnyObject]! {
+//        get { return Cache.freakoVioletCircleTargets }
+//        set {
+//            Cache.freakoVioletCircleTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(FreakoColors.imageOfFreakoVioletCircle)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var checkInACircleTargets: [AnyObject]! {
+//        get { return Cache.checkInACircleTargets }
+//        set {
+//            Cache.checkInACircleTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(FreakoColors.imageOfCheckInACircle)
+//            }
+//        }
+//    }
 
 }
 
@@ -374,12 +374,14 @@ extension UIColor {
         self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
         return UIColor(red: red * (1-shadow), green: green * (1-shadow), blue: blue * (1-shadow), alpha: alpha * (1-shadow) + shadow)
     }
+    
 }
 
-@objc protocol StyleKitSettableImage {
-    func setImage(image: UIImage!)
-}
+//@objc protocol StyleKitSettableImage {
+//    func setImage(image: UIImage!)
+//}
+//
+//@objc protocol StyleKitSettableSelectedImage {
+//    func setSelectedImage(image: UIImage!)
+//}
 
-@objc protocol StyleKitSettableSelectedImage {
-    func setSelectedImage(image: UIImage!)
-}

@@ -341,7 +341,7 @@ class DragAndDoneMainViewController: UIViewController {
             }
         }
         
-        if taskViews.count < 5
+        if taskViews.count < 5 && taskHandler.currentFolderString() != nil
         {
             println("MINDRE ÄN FEM TASKS")
         placeHolder.bounds.size = CGSizeMake(taskViewSize, taskViewSize)

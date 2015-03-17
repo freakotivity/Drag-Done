@@ -1466,254 +1466,254 @@ public class IOSIcons : NSObject {
         return Cache.imageOfThreeSegmentedCircle2px!
     }
 
-    //// Customization Infrastructure
-
-    @IBOutlet var addInCircleTargets: [AnyObject]! {
-        get { return Cache.addInCircleTargets }
-        set {
-            Cache.addInCircleTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfAddInCircle)
-            }
-        }
-    }
-
-    @IBOutlet var addTargets: [AnyObject]! {
-        get { return Cache.addTargets }
-        set {
-            Cache.addTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfAdd)
-            }
-        }
-    }
-
-    @IBOutlet var albumTargets: [AnyObject]! {
-        get { return Cache.albumTargets }
-        set {
-            Cache.albumTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfAlbum)
-            }
-        }
-    }
-
-    @IBOutlet var clockTargets: [AnyObject]! {
-        get { return Cache.clockTargets }
-        set {
-            Cache.clockTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfClock)
-            }
-        }
-    }
-
-    @IBOutlet var downloadICloudTargets: [AnyObject]! {
-        get { return Cache.downloadICloudTargets }
-        set {
-            Cache.downloadICloudTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfDownloadICloud)
-            }
-        }
-    }
-
-    @IBOutlet var infoTargets: [AnyObject]! {
-        get { return Cache.infoTargets }
-        set {
-            Cache.infoTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfInfo)
-            }
-        }
-    }
-
-    @IBOutlet var moreTargets: [AnyObject]! {
-        get { return Cache.moreTargets }
-        set {
-            Cache.moreTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfMore)
-            }
-        }
-    }
-
-    @IBOutlet var photosTargets: [AnyObject]! {
-        get { return Cache.photosTargets }
-        set {
-            Cache.photosTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfPhotos)
-            }
-        }
-    }
-
-    @IBOutlet var removeTargets: [AnyObject]! {
-        get { return Cache.removeTargets }
-        set {
-            Cache.removeTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfRemove)
-            }
-        }
-    }
-
-    @IBOutlet var sentTargets: [AnyObject]! {
-        get { return Cache.sentTargets }
-        set {
-            Cache.sentTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfSent)
-            }
-        }
-    }
-
-    @IBOutlet var shareTargets: [AnyObject]! {
-        get { return Cache.shareTargets }
-        set {
-            Cache.shareTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfShare)
-            }
-        }
-    }
-
-    @IBOutlet var soundOffTargets: [AnyObject]! {
-        get { return Cache.soundOffTargets }
-        set {
-            Cache.soundOffTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfSoundOff)
-            }
-        }
-    }
-
-    @IBOutlet var soundOnTargets: [AnyObject]! {
-        get { return Cache.soundOnTargets }
-        set {
-            Cache.soundOnTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfSoundOn)
-            }
-        }
-    }
-
-    @IBOutlet var soundTargets: [AnyObject]! {
-        get { return Cache.soundTargets }
-        set {
-            Cache.soundTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfSound)
-            }
-        }
-    }
-
-    @IBOutlet var uploadTargets: [AnyObject]! {
-        get { return Cache.uploadTargets }
-        set {
-            Cache.uploadTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfUpload)
-            }
-        }
-    }
-
-    @IBOutlet var folderTargets: [AnyObject]! {
-        get { return Cache.folderTargets }
-        set {
-            Cache.folderTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfFolder)
-            }
-        }
-    }
-
-    @IBOutlet var folderAddTargets: [AnyObject]! {
-        get { return Cache.folderAddTargets }
-        set {
-            Cache.folderAddTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfFolderAdd)
-            }
-        }
-    }
-
-    @IBOutlet var folderRemoveTargets: [AnyObject]! {
-        get { return Cache.folderRemoveTargets }
-        set {
-            Cache.folderRemoveTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfFolderRemove)
-            }
-        }
-    }
-
-    @IBOutlet var rowTargets: [AnyObject]! {
-        get { return Cache.rowTargets }
-        set {
-            Cache.rowTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfRow)
-            }
-        }
-    }
-
-    @IBOutlet var checkTargets: [AnyObject]! {
-        get { return Cache.checkTargets }
-        set {
-            Cache.checkTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfCheck)
-            }
-        }
-    }
-
-    @IBOutlet var tabsTargets: [AnyObject]! {
-        get { return Cache.tabsTargets }
-        set {
-            Cache.tabsTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfTabs)
-            }
-        }
-    }
-
-    @IBOutlet var writeTargets: [AnyObject]! {
-        get { return Cache.writeTargets }
-        set {
-            Cache.writeTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfWrite)
-            }
-        }
-    }
-
-    @IBOutlet var cameraTargets: [AnyObject]! {
-        get { return Cache.cameraTargets }
-        set {
-            Cache.cameraTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfCamera)
-            }
-        }
-    }
-
-    @IBOutlet var threeSegmentedCircle2pxTargets: [AnyObject]! {
-        get { return Cache.threeSegmentedCircle2pxTargets }
-        set {
-            Cache.threeSegmentedCircle2pxTargets = newValue
-            for target: AnyObject in newValue {
-                target.setImage(IOSIcons.imageOfThreeSegmentedCircle2px)
-            }
-        }
-    }
+//    //// Customization Infrastructure
+//
+//    @IBOutlet var addInCircleTargets: [AnyObject]! {
+//        get { return Cache.addInCircleTargets }
+//        set {
+//            Cache.addInCircleTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfAddInCircle)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var addTargets: [AnyObject]! {
+//        get { return Cache.addTargets }
+//        set {
+//            Cache.addTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfAdd)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var albumTargets: [AnyObject]! {
+//        get { return Cache.albumTargets }
+//        set {
+//            Cache.albumTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfAlbum)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var clockTargets: [AnyObject]! {
+//        get { return Cache.clockTargets }
+//        set {
+//            Cache.clockTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfClock)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var downloadICloudTargets: [AnyObject]! {
+//        get { return Cache.downloadICloudTargets }
+//        set {
+//            Cache.downloadICloudTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfDownloadICloud)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var infoTargets: [AnyObject]! {
+//        get { return Cache.infoTargets }
+//        set {
+//            Cache.infoTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfInfo)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var moreTargets: [AnyObject]! {
+//        get { return Cache.moreTargets }
+//        set {
+//            Cache.moreTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfMore)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var photosTargets: [AnyObject]! {
+//        get { return Cache.photosTargets }
+//        set {
+//            Cache.photosTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfPhotos)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var removeTargets: [AnyObject]! {
+//        get { return Cache.removeTargets }
+//        set {
+//            Cache.removeTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfRemove)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var sentTargets: [AnyObject]! {
+//        get { return Cache.sentTargets }
+//        set {
+//            Cache.sentTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfSent)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var shareTargets: [AnyObject]! {
+//        get { return Cache.shareTargets }
+//        set {
+//            Cache.shareTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfShare)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var soundOffTargets: [AnyObject]! {
+//        get { return Cache.soundOffTargets }
+//        set {
+//            Cache.soundOffTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfSoundOff)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var soundOnTargets: [AnyObject]! {
+//        get { return Cache.soundOnTargets }
+//        set {
+//            Cache.soundOnTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfSoundOn)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var soundTargets: [AnyObject]! {
+//        get { return Cache.soundTargets }
+//        set {
+//            Cache.soundTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfSound)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var uploadTargets: [AnyObject]! {
+//        get { return Cache.uploadTargets }
+//        set {
+//            Cache.uploadTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfUpload)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var folderTargets: [AnyObject]! {
+//        get { return Cache.folderTargets }
+//        set {
+//            Cache.folderTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfFolder)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var folderAddTargets: [AnyObject]! {
+//        get { return Cache.folderAddTargets }
+//        set {
+//            Cache.folderAddTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfFolderAdd)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var folderRemoveTargets: [AnyObject]! {
+//        get { return Cache.folderRemoveTargets }
+//        set {
+//            Cache.folderRemoveTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfFolderRemove)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var rowTargets: [AnyObject]! {
+//        get { return Cache.rowTargets }
+//        set {
+//            Cache.rowTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfRow)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var checkTargets: [AnyObject]! {
+//        get { return Cache.checkTargets }
+//        set {
+//            Cache.checkTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfCheck)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var tabsTargets: [AnyObject]! {
+//        get { return Cache.tabsTargets }
+//        set {
+//            Cache.tabsTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfTabs)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var writeTargets: [AnyObject]! {
+//        get { return Cache.writeTargets }
+//        set {
+//            Cache.writeTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfWrite)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var cameraTargets: [AnyObject]! {
+//        get { return Cache.cameraTargets }
+//        set {
+//            Cache.cameraTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfCamera)
+//            }
+//        }
+//    }
+//
+//    @IBOutlet var threeSegmentedCircle2pxTargets: [AnyObject]! {
+//        get { return Cache.threeSegmentedCircle2pxTargets }
+//        set {
+//            Cache.threeSegmentedCircle2pxTargets = newValue
+//            for target: AnyObject in newValue {
+//                target.setImage(IOSIcons.imageOfThreeSegmentedCircle2px)
+//            }
+//        }
+//    }
 
 }
 
-@objc protocol StyleKitSettableImage {
-    func setImage(image: UIImage!)
-}
-
-@objc protocol StyleKitSettableSelectedImage {
-    func setSelectedImage(image: UIImage!)
-}
+//@objc protocol StyleKitSettableImage {
+//    func setImage(image: UIImage!)
+//}
+//
+//@objc protocol StyleKitSettableSelectedImage {
+//    func setSelectedImage(image: UIImage!)
+//}

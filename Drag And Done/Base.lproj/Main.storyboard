@@ -385,27 +385,34 @@
                                 <rect key="frame" x="276" y="344" width="48" height="30"/>
                                 <state key="normal" title="Done"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9H5-eO-eZN">
-                                <rect key="frame" x="16" y="266" width="44" height="44"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="81t-sP-P6N">
-                                <rect key="frame" x="97" y="266" width="44" height="44"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6q-yo-Fua">
-                                <rect key="frame" x="181" y="266" width="44" height="44"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fg8-zp-woK">
-                                <rect key="frame" x="267" y="266" width="44" height="44"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nc4-Ny-1RV">
-                                <rect key="frame" x="354" y="266" width="44" height="44"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t8S-Lk-Zje">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v2m-F9-ekj" customClass="RainbowColors" customModule="Drag_And_Done">
+                                <rect key="frame" x="15" y="266" width="44" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJ5-CT-922" customClass="RainbowColors" customModule="Drag_And_Done">
+                                <rect key="frame" x="98" y="266" width="44" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Al-jA-efV" customClass="RainbowColors" customModule="Drag_And_Done">
+                                <rect key="frame" x="183" y="266" width="44" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g2u-qC-Zoq" customClass="RainbowColors" customModule="Drag_And_Done">
+                                <rect key="frame" x="268" y="266" width="44" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OJO-jf-2qa" customClass="RainbowColors" customModule="Drag_And_Done">
+                                <rect key="frame" x="353" y="266" width="44" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P7C-hq-FxP" customClass="RainbowColors" customModule="Drag_And_Done">
                                 <rect key="frame" x="446" y="266" width="44" height="44"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IfD-Dy-u8z">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6p0-YG-xoU" customClass="RainbowColors" customModule="Drag_And_Done">
                                 <rect key="frame" x="540" y="266" width="44" height="44"/>
-                            </imageView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

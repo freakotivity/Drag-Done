@@ -315,28 +315,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and / or name the task" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SqM-Te-EYl">
-                                <rect key="frame" x="214" y="222" width="173" height="21"/>
+                                <rect key="frame" x="214" y="170" width="173" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TlU-L3-fax">
-                                <rect key="frame" x="86" y="251" width="429" height="30"/>
+                                <rect key="frame" x="86" y="199" width="429" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Oy-gE-R1K">
-                                <rect key="frame" x="230" y="74" width="140" height="140"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Oy-gE-R1K">
+                                <rect key="frame" x="230" y="74" width="140" height="88"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="1Fo-Lj-lHH"/>
-                                    <constraint firstAttribute="height" constant="140" id="veP-Ea-59x"/>
+                                    <constraint firstAttribute="height" constant="88" id="veP-Ea-59x"/>
                                 </constraints>
-                                <state key="normal" title="Take Pic Button">
+                                <state key="normal" image="CameraBlack.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9dd-4I-Qos">
-                                <rect key="frame" x="282" y="289" width="37" height="30"/>
+                                <rect key="frame" x="282" y="237" width="37" height="30"/>
                                 <state key="normal" title="Done">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -635,6 +635,9 @@
             <point key="canvasLocation" x="223" y="879"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CameraBlack.png" width="120" height="88"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qs6-V4-yRP"/>
         <segue reference="A1M-Kt-j4c"/>

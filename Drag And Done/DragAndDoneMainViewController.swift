@@ -31,29 +31,29 @@ class DragAndDoneMainViewController: UIViewController {
 //    var showsBottomPage = false
     
     override func viewDidLoad() {
-        //        taskHandler.createFolderNamed("EMPTY", select: true, overwrite: true)
-        //        taskHandler.createFolderNamed("FIRST", select: true, overwrite: true)
-        //        taskHandler.createTaskNamed("Spork One", imageName: " ")
-        //        taskHandler.createTaskNamed("Spork Two", imageName: " ")
-        //        taskHandler.createTaskNamed("Spork Three", imageName: " ")
-        //        taskHandler.createTaskNamed("Spork FORK", imageName: " ")
-        //        taskHandler.createTaskNamed("Spork FIVE", imageName: "")
-        //        taskHandler.createFolderNamed("SECOND", select: true, overwrite: true)
-        //        taskHandler.createTaskNamed("Spork One", imageName: " ")
-        //        taskHandler.createTaskNamed("Spork Two", imageName: " ")
-        //        taskHandler.createTaskNamed("Spork Three", imageName: " ")
-        //        taskHandler.createTaskNamed("Spork FORK", imageName: " ")
-        //        taskHandler.createTaskNamed("Spork FIVE", imageName: "")
-        //        taskHandler.createFolderNamed("THIRD", select: true, overwrite: true)
-        //                taskHandler.createTaskNamed("Spork One", imageName: " ")
-        //                taskHandler.createTaskNamed("Spork Two", imageName: " ")
-        //                taskHandler.createTaskNamed("Spork Three", imageName: " ")
-        //                taskHandler.createTaskNamed("Spork FORK", imageName: " ")
-        //                taskHandler.createTaskNamed("Spork FIVE", imageName: "")
-        //        taskHandler.createTaskNamed("Spork On", imageName: "")
-        //        taskHandler.createTaskNamed("Spork In", imageName: "")
-        //        taskHandler.createTaskNamed("Spork Off", imageName: "")
-        //        taskHandler.createTaskNamed("Spork Away", imageName: "")
+//                taskHandler.createFolderNamed("EMPTY", select: true, overwrite: true)
+//                taskHandler.createFolderNamed("FIRST", select: true, overwrite: true)
+//                taskHandler.createTaskNamed("Spork One", imageName: " ")
+//                taskHandler.createTaskNamed("Spork Two", imageName: " ")
+//                taskHandler.createTaskNamed("Spork Three", imageName: " ")
+//                taskHandler.createTaskNamed("Spork FORK", imageName: " ")
+//                taskHandler.createTaskNamed("Spork FIVE", imageName: "")
+//                taskHandler.createFolderNamed("SECOND", select: true, overwrite: true)
+//                taskHandler.createTaskNamed("Spork One", imageName: " ")
+//                taskHandler.createTaskNamed("Spork Two", imageName: " ")
+//                taskHandler.createTaskNamed("Spork Three", imageName: " ")
+//                taskHandler.createTaskNamed("Spork FORK", imageName: " ")
+//                taskHandler.createTaskNamed("Spork FIVE", imageName: "")
+//                taskHandler.createFolderNamed("THIRD", select: true, overwrite: true)
+//                        taskHandler.createTaskNamed("Spork One", imageName: " ")
+//                        taskHandler.createTaskNamed("Spork Two", imageName: " ")
+//                        taskHandler.createTaskNamed("Spork Three", imageName: " ")
+//                        taskHandler.createTaskNamed("Spork FORK", imageName: " ")
+//                        taskHandler.createTaskNamed("Spork FIVE", imageName: "")
+//                taskHandler.createTaskNamed("Spork On", imageName: "")
+//                taskHandler.createTaskNamed("Spork In", imageName: "")
+//                taskHandler.createTaskNamed("Spork Off", imageName: "")
+//                taskHandler.createTaskNamed("Spork Away", imageName: "")
         //        //println("PLIST: \(taskHandler.plist())")
         
         let placeHolderTap = UITapGestureRecognizer(target: self, action: "tappedPlaceHolder:")
@@ -535,18 +535,22 @@ class DragAndDoneMainViewController: UIViewController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         let nuFolder = UIAlertAction(title: "New Folder", style: UIAlertActionStyle.Default) { (action) -> Void in
             println("NEW FOLDER")
-            self.addFolder()
+            self.clearTaskViews()
+            self.performSegueWithIdentifier("Add Folder", sender: nil)
         }
         let nuTask = UIAlertAction(title: "New Task", style: UIAlertActionStyle.Default) { (action) -> Void in
             println("NEW TASK")
-            self.addTask()
+            self.clearTaskViews()
+            self.performSegueWithIdentifier("Add Task", sender: nil)
         }
         let editFolder = UIAlertAction(title: "Edit Folder", style: UIAlertActionStyle.Default) { (action) -> Void in
             println("EDIT FOLDER")
+            self.clearTaskViews()
             self.performSegueWithIdentifier("Edit Folder", sender: nil)
         }
         let editTasks = UIAlertAction(title: "Edit Tasks", style: UIAlertActionStyle.Default) { (action) -> Void in
             println("EDIT TASKS")
+            self.clearTaskViews()
             self.performSegueWithIdentifier("Add Task", sender: nil)
         }
         let settings = UIAlertAction(title: "Settings", style: UIAlertActionStyle.Default) { (action) -> Void in

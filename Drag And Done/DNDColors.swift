@@ -9,13 +9,13 @@
 import UIKit
 
 class RainbowColors: UIView {
-    let chooseRedColor = FreakoColors.drawFreakoRedCircle()
-    let chooseOrangeColor = FreakoColors.drawFreakoOrangeCircle()
-    let chooseYellowColor = FreakoColors.drawFreakoYellowCircle()
-    let chooseGreenColor = FreakoColors.drawFreakoGreenCircle()
-    let chooseBlueColor = FreakoColors.drawFreakoBlueCircle()
-    let chooseDarkblueColor = FreakoColors.drawFreakoDarkBlueCircle()
-    let chooseVioletColor = FreakoColors.drawFreakoVioletCircle()
+    let chooseRedColor: () = FreakoColors.drawFreakoRedCircle()
+    let chooseOrangeColor: () = FreakoColors.drawFreakoOrangeCircle()
+    let chooseYellowColor: () = FreakoColors.drawFreakoYellowCircle()
+    let chooseGreenColor: () = FreakoColors.drawFreakoGreenCircle()
+    let chooseBlueColor: () = FreakoColors.drawFreakoBlueCircle()
+    let chooseDarkblueColor: () = FreakoColors.drawFreakoDarkBlueCircle()
+    let chooseVioletColor: () = FreakoColors.drawFreakoVioletCircle()
 }
 
 struct DNDColors {

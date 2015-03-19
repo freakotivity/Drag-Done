@@ -16,6 +16,7 @@ struct ZOrder {
 
 class DragAndDoneMainViewController: UIViewController {
     
+    @IBOutlet weak var dotsView: DNDDotsView!
     let taskHandler = DNDTaskHandler()
     let topBarHeight:CGFloat = 64
     var taskViewSize:CGFloat!
@@ -23,37 +24,37 @@ class DragAndDoneMainViewController: UIViewController {
     var doneXPosition:CGFloat!
     var taskViews = [DNDTaskView]()
     var doneTaskViews = [DNDTaskView]()
-//    let topBarView = UIView()
-//    let titleLabel = UILabel()
+    //    let topBarView = UIView()
+    //    let titleLabel = UILabel()
     var entryPoint:CGFloat!
     let placeHolder = Placeholder()
-//    var showsTopPage = false
-//    var showsBottomPage = false
+    //    var showsTopPage = false
+    //    var showsBottomPage = false
     
     override func viewDidLoad() {
-//                taskHandler.createFolderNamed("EMPTY", select: true, overwrite: true)
-//                taskHandler.createFolderNamed("FIRST", select: true, overwrite: true)
-//                taskHandler.createTaskNamed("Spork One", imageName: " ")
-//                taskHandler.createTaskNamed("Spork Two", imageName: " ")
-//                taskHandler.createTaskNamed("Spork Three", imageName: " ")
-//                taskHandler.createTaskNamed("Spork FORK", imageName: " ")
-//                taskHandler.createTaskNamed("Spork FIVE", imageName: "")
-//                taskHandler.createFolderNamed("SECOND", select: true, overwrite: true)
-//                taskHandler.createTaskNamed("Spork One", imageName: " ")
-//                taskHandler.createTaskNamed("Spork Two", imageName: " ")
-//                taskHandler.createTaskNamed("Spork Three", imageName: " ")
-//                taskHandler.createTaskNamed("Spork FORK", imageName: " ")
-//                taskHandler.createTaskNamed("Spork FIVE", imageName: "")
-//                taskHandler.createFolderNamed("THIRD", select: true, overwrite: true)
-//                        taskHandler.createTaskNamed("Spork One", imageName: " ")
-//                        taskHandler.createTaskNamed("Spork Two", imageName: " ")
-//                        taskHandler.createTaskNamed("Spork Three", imageName: " ")
-//                        taskHandler.createTaskNamed("Spork FORK", imageName: " ")
-//                        taskHandler.createTaskNamed("Spork FIVE", imageName: "")
-//                taskHandler.createTaskNamed("Spork On", imageName: "")
-//                taskHandler.createTaskNamed("Spork In", imageName: "")
-//                taskHandler.createTaskNamed("Spork Off", imageName: "")
-//                taskHandler.createTaskNamed("Spork Away", imageName: "")
+        //                taskHandler.createFolderNamed("EMPTY", select: true, overwrite: true)
+        //                taskHandler.createFolderNamed("FIRST", select: true, overwrite: true)
+        //                taskHandler.createTaskNamed("Spork One", imageName: " ")
+        //                taskHandler.createTaskNamed("Spork Two", imageName: " ")
+        //                taskHandler.createTaskNamed("Spork Three", imageName: " ")
+        //                taskHandler.createTaskNamed("Spork FORK", imageName: " ")
+        //                taskHandler.createTaskNamed("Spork FIVE", imageName: "")
+        //                taskHandler.createFolderNamed("SECOND", select: true, overwrite: true)
+        //                taskHandler.createTaskNamed("Spork One", imageName: " ")
+        //                taskHandler.createTaskNamed("Spork Two", imageName: " ")
+        //                taskHandler.createTaskNamed("Spork Three", imageName: " ")
+        //                taskHandler.createTaskNamed("Spork FORK", imageName: " ")
+        //                taskHandler.createTaskNamed("Spork FIVE", imageName: "")
+        //                taskHandler.createFolderNamed("THIRD", select: true, overwrite: true)
+        //                        taskHandler.createTaskNamed("Spork One", imageName: " ")
+        //                        taskHandler.createTaskNamed("Spork Two", imageName: " ")
+        //                        taskHandler.createTaskNamed("Spork Three", imageName: " ")
+        //                        taskHandler.createTaskNamed("Spork FORK", imageName: " ")
+        //                        taskHandler.createTaskNamed("Spork FIVE", imageName: "")
+        //                taskHandler.createTaskNamed("Spork On", imageName: "")
+        //                taskHandler.createTaskNamed("Spork In", imageName: "")
+        //                taskHandler.createTaskNamed("Spork Off", imageName: "")
+        //                taskHandler.createTaskNamed("Spork Away", imageName: "")
         //        //println("PLIST: \(taskHandler.plist())")
         
         let placeHolderTap = UITapGestureRecognizer(target: self, action: "tappedPlaceHolder:")
@@ -69,14 +70,14 @@ class DragAndDoneMainViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-//        topBarView.frame = CGRectMake(0, 0, self.view.bounds.size.width, topBarHeight)
-//        topBarView.backgroundColor = DNDColors.freakoGreen
-//        topBarView.layer.zPosition = ZOrder.Topbar
-//        self.view.addSubview(topBarView)
-//        
-//        topBarView.addSubview(titleLabel)
-//        titleLabel.textColor = UIColor.whiteColor()
-//        titleLabel.font = UIFont(name: "Helvetica Neue", size: 20)
+        //        topBarView.frame = CGRectMake(0, 0, self.view.bounds.size.width, topBarHeight)
+        //        topBarView.backgroundColor = DNDColors.freakoGreen
+        //        topBarView.layer.zPosition = ZOrder.Topbar
+        //        self.view.addSubview(topBarView)
+        //
+        //        topBarView.addSubview(titleLabel)
+        //        titleLabel.textColor = UIColor.whiteColor()
+        //        titleLabel.font = UIFont(name: "Helvetica Neue", size: 20)
         
         taskViewSize = (self.view.bounds.size.height - topBarHeight) / 6
         println("TASK VIEW SIZE \(taskViewSize)")
@@ -93,75 +94,21 @@ class DragAndDoneMainViewController: UIViewController {
     
     func addFolder()
     {
-        //println("ADD FOLDER: \(sender)")
-//        let addFolderAction = UIAlertController(title: "Add Folder", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-//        addFolderAction.addTextFieldWithConfigurationHandler { (textField) -> Void in
-//            
-//        }
-//        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-//        let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.Default) { (action) -> Void in
-//            //println("ADD \((addFolderAction.textFields?.first as UITextField).text)")
-//            self.taskHandler.createFolderNamed((addFolderAction.textFields?.first as UITextField).text, select: true, overwrite: true)
-//            self.clearTaskViews()
-//            self.loadCurrentFolder()
-//            
-//        }
-//        addFolderAction.addAction(cancelAction)
-//        addFolderAction.addAction(addAction)
-//        self.presentViewController(addFolderAction, animated: true, completion: nil)
         self.performSegueWithIdentifier("Add Folder", sender: nil)
     }
     
     func tappedPlaceHolder(tap: UITapGestureRecognizer)
     {
-        //println("TAPPED PLACEHOLDER")
         addTask()
     }
     
     func addTask()
     {
-//        let addTaskAction = UIAlertController(title: "Add Task", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-//        addTaskAction.addTextFieldWithConfigurationHandler { (textField) -> Void in
-//            
-//        }
-//        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
-//        let addAction = UIAlertAction(title: "Add", style: UIAlertActionStyle.Default) { (action) -> Void in
-//            
-//            if let nuTask = self.taskHandler.createTaskNamed((addTaskAction.textFields?.first as UITextField).text, imageName: "") as DNDTask?
-//            {
-//                let tv = DNDTaskView()
-//                
-//                if let colStr = self.taskHandler.currentFolderColor()
-//                {
-//                    tv.taskColor = self.colorFromString(colStr)
-//                }
-//                
-//                tv.bounds.size = CGSizeMake(self.taskViewSize * 0.99, self.taskViewSize * 0.99)
-//                tv.task = nuTask
-//                let panRec = UIPanGestureRecognizer(target: self, action: "handlePan:")
-//                tv.addGestureRecognizer(panRec)
-//                
-//                let longPress = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
-//                tv.addGestureRecognizer(longPress)
-//                
-//                tv.center.y = self.entryPoint
-//                tv.center.x = tv.task!.done ? self.doneXPosition : self.todoXPosition
-//                tv.layer.zPosition = ZOrder.Taskviews
-//                self.view.addSubview(tv)
-//                self.taskViews.append(tv)
-//                self.arrangeTaskviews()
-//            }
-//            
-//        }
-//        addTaskAction.addAction(cancelAction)
-//        addTaskAction.addAction(addAction)
-//        self.presentViewController(addTaskAction, animated: true, completion: nil)
         self.performSegueWithIdentifier("Add Task", sender: nil)
     }
     
     func handleLongPress(lp: UILongPressGestureRecognizer)
     {
-        //println("LONG PRESS! START DANCING!")
         for tv in taskViews
         {
             tv.startDancing()
@@ -200,6 +147,11 @@ class DragAndDoneMainViewController: UIViewController {
             }
         } else {
             //            //println("TRANSLATION IN VIEW \(pan.translationInView(self.view))")
+            switch pan.state
+            {
+            case .Changed: dotsView.hidden = false
+            default: dotsView.hidden = true
+            }
             if pan.translationInView(self.view).y < -70
             {
                 pan.setTranslation(CGPointZero, inView: self.view)
@@ -217,113 +169,39 @@ class DragAndDoneMainViewController: UIViewController {
     func refreshUI()
     {
         arrangeTaskviews()
-        arrangeDots()
-
+        arrangeDots(false)
+        
     }
     
-    func clearDots()
+    func clearDots(fade: Bool)
     {
-        for view in self.view.subviews
-        {
-            if view is DNDFolderDotView
-            {
-                view.removeFromSuperview()
-            }
-        }
+        
     }
     
-    func arrangeDots()
+    func countDots()
+    {
+        
+    }
+    
+    func toggleDotView()
+    {
+        dotsView.hidden = !dotsView.hidden
+    }
+    
+    func arrangeDots(fade: Bool)
     {
         //println("ARRANGE DOTS")
-        self.clearDots()
-        
-//        let xPos = self.view.bounds.size.width - 20   //RIGHT
-                    let xPos = self.view.center.x                 // CENTER
-        //            let xPos:CGFloat = 20.0                         // LEFT
-
-        var spaceBetweenDots:CGFloat = 50.0
-        let bottomY = self.view.bounds.size.height - (self.view.bounds.size.height / 6)
-        var counter:CGFloat = 1.0
-        
-
-
-        
-        if let plist = taskHandler.plist() as NSDictionary?
+        dotsView.colors = taskHandler.foldersColors()!
+        if let folders = taskHandler.foldersTitles()
         {
-            let numberOfFolders = plist.count + 2
-            let ySpread = self.view.bounds.size.height * 0.5
-            spaceBetweenDots = ySpread / CGFloat(numberOfFolders)
-
-            //println("YEAH PLIST \(plist.count)")
-//            let statsDot = DNDFolderDotView()
-//            statsDot.type = .stat
-//            if showsBottomPage
-//            {
-//                statsDot.selected = true
-//            } else {
-//                statsDot.selected = false
-//            }
-//            statsDot.backgroundColor = UIColor.clearColor()
-//            statsDot.frame = CGRectMake(0, 0, 50, 50)
-//            statsDot.center = CGPointMake(xPos, bottomY - (counter * spaceBetweenDots))
-//            self.view.addSubview(statsDot)
-//            let tapStats = UITapGestureRecognizer(target: self, action: "tappedDot:")
-//            statsDot.addGestureRecognizer(tapStats)
-//            
-//            counter += 1.0
-            
-
-            for (name, folder) in plist
+            dotsView.numberOfDots = folders.count
+            if let folderIndex = find(folders, taskHandler.currentFolderString()!)
             {
-                //println("FOLDER IN PLIST \(name)")
-                let colorString = folder["colorString"] as String
-                let dot = DNDFolderDotView()
-                if (name as String) == taskHandler.currentFolderString()
-                {
-                    dot.selected = true
-                } else {
-                    dot.selected = false
-                }
-                dot.backgroundColor = UIColor.clearColor()
-                dot.color = DNDColors.colorFromString(colorString)
-                dot.name = name as String
-                dot.frame = CGRectMake(0, 0, 50, 50)
-                dot.center = CGPointMake(xPos, bottomY - (counter * spaceBetweenDots))
-                dot.layer.zPosition = ZOrder.UIStuff
-                self.view.addSubview(dot)
-                
-                let tap = UITapGestureRecognizer(target: self, action: "tappedDot:")
-                dot.addGestureRecognizer(tap)
-                
-                counter += 1.0
+                println("FOLDER INDEX: \(folderIndex)")
+                dotsView.selectedDot = folderIndex
             }
         }
-//        let plusDot = DNDFolderDotView()
-//        plusDot.type = DotType.plus
-//        if showsTopPage
-//        {
-//            plusDot.selected = true
-//        } else {
-//            plusDot.selected = false
-//        }
-//        plusDot.backgroundColor = UIColor.clearColor()
-//        plusDot.frame = CGRectMake(0, 0, 50, 50)
-//        plusDot.center = CGPointMake(xPos, bottomY - (counter * spaceBetweenDots))
-//        self.view.addSubview(plusDot)
-//        let tapPlus = UITapGestureRecognizer(target: self, action: "tappedDot:")
-//        plusDot.addGestureRecognizer(tapPlus)
-    }
-    
-    func tappedDot(tap: UITapGestureRecognizer)
-    {
-        println("TAPPED DOT \(tap.view)")
-        clearTaskViews()
-        
-        entryPoint = self.view.bounds.size.height + taskViewSize
-        
-        let dot = tap.view as DNDFolderDotView
-        taskHandler.selectFolderNamed(dot.name)
-        self.loadCurrentFolder()
+        dotsView.setNeedsDisplay()
     }
     
     func arrangeTaskviews()
@@ -337,7 +215,6 @@ class DragAndDoneMainViewController: UIViewController {
             if tv.task?.done != true
             {
                 let yPos = self.view.bounds.size.height - (ySpace * counter) + (taskViewSize / 3)
-                println("YPOS \(yPos) \(taskViewSize) \(counter) \(ySpace)")
                 tv.sendTo(CGPointMake(todoXPosition, yPos))
                 counter += 1.0
             }
@@ -345,9 +222,8 @@ class DragAndDoneMainViewController: UIViewController {
         
         if taskViews.count < 5 && taskHandler.currentFolderString() != nil
         {
-            println("MINDRE ÄN FEM TASKS")
-        placeHolder.bounds.size = CGSizeMake(taskViewSize, taskViewSize)
-        placeHolder.center = CGPointMake(todoXPosition, self.view.bounds.size.height - (ySpace * counter) + (taskViewSize / 3))
+            placeHolder.bounds.size = CGSizeMake(taskViewSize, taskViewSize)
+            placeHolder.center = CGPointMake(todoXPosition, self.view.bounds.size.height - (ySpace * counter) + (taskViewSize / 3))
         } else {
             hidePlaceholder()
         }
@@ -382,7 +258,7 @@ class DragAndDoneMainViewController: UIViewController {
         
         if let folderString = taskHandler.currentFolderString() as String?
         {
-//        setTitle(folderString)
+            //        setTitle(folderString)
             self.title = folderString
         }
         
@@ -391,7 +267,7 @@ class DragAndDoneMainViewController: UIViewController {
         {
             clr = colorFromString(colStr)
             navigationController?.navigationBar.barTintColor = clr
-//            topBarView.backgroundColor = clr
+            //            topBarView.backgroundColor = clr
         }
         
         if let tasks = taskHandler.tasks()
@@ -442,92 +318,92 @@ class DragAndDoneMainViewController: UIViewController {
         }
     }
     
-    func nextFolder()
+    func prevFolder()
     {
-        println("NEXT FOLDER")
+        if let folders = taskHandler.foldersTitles()
+        {
+            for tv in taskViews
+            {
+                tv.exitUp()
+            }
             clearTaskViews()
             taskViews.removeAll()
             doneTaskViews.removeAll()
-            entryPoint = self.view.bounds.size.height + taskViewSize
+            entryPoint = -taskViewSize
             
-            if let folders = taskHandler.foldersTitles()
+            if let cfs = taskHandler.currentFolderString() as String?
             {
-
-                    if let cfs = taskHandler.currentFolderString() as String?
+                if let folderIndex = find(folders, taskHandler.currentFolderString()!)
+                {
+                    if folderIndex == folders.count - 1
                     {
-                        if let folderIndex = find(folders, taskHandler.currentFolderString()!)
-                        {
-                            println("FOLDERINDEX \(folderIndex) FOLDERS COUNT: \(folders.count)")
-                            if folderIndex == folders.count - 1
-                            {
-                                taskHandler.selectFolderNamed(folders.first!)
-                            } else {
-                                taskHandler.selectFolderNamed(folders[folderIndex + 1])
-                            }
-                            loadCurrentFolder()
-                        }
+                        taskHandler.selectFolderNamed(folders.first!)
+                    } else {
+                        taskHandler.selectFolderNamed(folders[folderIndex + 1])
                     }
+                    loadCurrentFolder()
+                }
             }
+        }
         
         
     }
-    func prevFolder()
+    func nextFolder()
     {
-        println("PREV FOLDER")
-        
-        
         if let folders = taskHandler.foldersTitles()
         {
-                println("SHOWS INTE BOTTOM PAGE")
-                for tv in taskViews
+            for tv in taskViews
+            {
+                tv.exitUp()
+            }
+            taskViews.removeAll()
+            doneTaskViews.removeAll()
+            entryPoint = self.view.bounds.size.height + taskViewSize
+
+            if let cfs = taskHandler.currentFolderString() as String?
+            {
+                if let folderIndex = find(folders, taskHandler.currentFolderString()!)
                 {
-                    tv.exitDown()
-                }
-                taskViews.removeAll()
-                doneTaskViews.removeAll()
-                entryPoint = -taskViewSize
-                if let cfs = taskHandler.currentFolderString() as String?
-                {
-                    if let folderIndex = find(folders, taskHandler.currentFolderString()!)
+                    if folderIndex == 0
                     {
-                        println("FOLDERINDEX \(folderIndex) COUNT \(folders.count)")
-                        if folderIndex == 0
-                        {
-                            taskHandler.selectFolderNamed(folders.last!)
-                        } else {
-                            taskHandler.selectFolderNamed(folders[folderIndex - 1])
-                        }
-                        loadCurrentFolder()
+                        taskHandler.selectFolderNamed(folders.last!)
+                    } else {
+                        taskHandler.selectFolderNamed(folders[folderIndex - 1])
                     }
+                    loadCurrentFolder()
                 }
             }
+        }
         
         
     }
-    
-//    func showBottomPage()
-//    {
-//        showsTopPage = false
-//        showsBottomPage = true
-//        taskHandler.unselectCurrentFolder()
-//        topBarView.backgroundColor = UIColor.brownColor()
-//        setTitle("STATS MAYBE?")
-//        refreshUI()
-//    }
-//    
-//    func showTopPage()
-//    {
-//        showsTopPage = true
-//        showsBottomPage = false
-//        taskHandler.unselectCurrentFolder()
-//        topBarView.backgroundColor = UIColor.blackColor()
-//        setTitle("ADD FOLDER")
-//        refreshUI()
-//    }
     
     func hidePlaceholder()
     {
         placeHolder.center = CGPointMake(-placeHolder.bounds.size.width, -placeHolder.bounds.size.height)
+    }
+    
+    @IBAction func tappedDotsView(tap: UITapGestureRecognizer) {
+        let height:CGFloat = dotsView.bounds.size.height
+        let dotSpace:CGFloat = height / CGFloat(dotsView.numberOfDots + 1)
+        println("TAPPED DOTS VIEW \(Int(round(tap.locationInView(dotsView).y / dotSpace)))")
+        if let folders = taskHandler.foldersTitles()
+        {
+            for tv in taskViews
+            {
+                tv.exitUp()
+            }
+            taskViews.removeAll()
+            doneTaskViews.removeAll()
+            entryPoint = self.view.bounds.size.height + taskViewSize
+            taskHandler.selectFolderNamed(folders[Int(round(tap.locationInView(dotsView).y / dotSpace)) - 1])
+            loadCurrentFolder()
+        }
+    }
+    
+    @IBAction func handleTap(sender: UITapGestureRecognizer) {
+        println("TAPPED WHOLE VIEW")
+        toggleDotView()
     }
     
     @IBAction func tappedActionArrow(tap: UITapGestureRecognizer) {

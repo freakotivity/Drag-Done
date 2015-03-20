@@ -101,7 +101,7 @@ class DNDTaskHandler
     func plistPath() -> String
     {
         let path = docDir().stringByAppendingPathComponent(DNDTaskHandlerKeys.PlistFile)
-//        println("PLIST PATH \(path)")
+        println("PLIST PATH \(path)")
         return path
     }
     
@@ -127,6 +127,27 @@ class DNDTaskHandler
         return nil
     }
     
+    func foldersColors() -> Array<String>?
+    {
+        if let myPlist = NSDictionary(contentsOfFile: plistPath())
+        {
+            var colorsArray = [String]()
+            for (title, folder) in myPlist
+            {
+                if let fldr = folder as? Dictionary<String, AnyObject>
+                {
+                    if let colStr = fldr["colorString"] as? String
+                    {
+                        colorsArray.append(colStr)
+                    }
+                }
+            }
+            println("COLORS ARRAY: \(colorsArray)")
+            return colorsArray
+        }
+        return nil
+    }
+    
     func foldersTitles() -> Array<String>?
     {
         if let myPlist = NSDictionary(contentsOfFile: plistPath())
@@ -134,6 +155,18 @@ class DNDTaskHandler
             if let titles = myPlist.allKeys as? Array<String>
             {
             return titles
+            }
+        }
+        return nil
+    }
+    
+    func numberOfFolders() ->Int?
+    {
+        if let myPlist = NSDictionary(contentsOfFile: plistPath())
+        {
+            if let titles = myPlist.allKeys as? Array<String>
+            {
+                return titles.count
             }
         }
         return nil

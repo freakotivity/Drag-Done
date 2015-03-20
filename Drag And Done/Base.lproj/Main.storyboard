@@ -30,19 +30,35 @@
                                     <outletCollection property="gestureRecognizers" destination="9tO-xd-EnG" appends="YES" id="auR-wE-P59"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nnL-yW-oH8" customClass="DNDDotsView" customModule="Drag_And_Done" customModuleProvider="target">
+                                <rect key="frame" x="275" y="72" width="50" height="508"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="XJC-5K-UbH"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="BWA-0l-iYd" appends="YES" id="Nax-0m-7LM"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nnL-yW-oH8" secondAttribute="bottom" constant="20" id="30k-rS-ca0"/>
+                            <constraint firstItem="nnL-yW-oH8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="hdr-fq-wtt"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oug-c0-6Q0" secondAttribute="bottom" id="ssg-iR-nQk"/>
+                            <constraint firstAttribute="centerX" secondItem="nnL-yW-oH8" secondAttribute="centerX" id="wvW-JF-OA1"/>
                             <constraint firstAttribute="trailing" secondItem="oug-c0-6Q0" secondAttribute="trailing" id="yDh-Fe-p4V"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bKb-vM-KNh" appends="YES" id="VHH-SQ-o7y"/>
+                            <outletCollection property="gestureRecognizers" destination="wAQ-Se-iCu" appends="YES" id="qY1-CG-4om"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="086-u4-CPO"/>
                     <connections>
+                        <outlet property="dotsView" destination="nnL-yW-oH8" id="NoV-iG-hQz"/>
                         <segue destination="ub5-Gu-C0q" kind="show" identifier="settings" id="RTN-L1-qjL"/>
                         <segue destination="ZYX-W6-uEF" kind="show" identifier="Add Folder" id="A1M-Kt-j4c"/>
                         <segue destination="ZYX-W6-uEF" kind="show" identifier="Edit Folder" id="9nf-v0-Agh"/>
@@ -59,6 +75,16 @@
                 <tapGestureRecognizer id="9tO-xd-EnG">
                     <connections>
                         <action selector="tappedActionArrow:" destination="BYZ-38-t0r" id="Spy-pj-lmC"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="wAQ-Se-iCu">
+                    <connections>
+                        <action selector="handleTap:" destination="BYZ-38-t0r" id="siN-gz-a1c"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="BWA-0l-iYd">
+                    <connections>
+                        <action selector="tappedDotsView:" destination="BYZ-38-t0r" id="nn3-9x-5JP"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -587,6 +613,7 @@
                             <constraint firstItem="8Al-jA-efV" firstAttribute="centerY" secondItem="61x-9F-Vaa" secondAttribute="centerY" id="cqY-rz-E6O"/>
                             <constraint firstItem="IoG-iY-4ZT" firstAttribute="leading" secondItem="Q9Z-cU-BWy" secondAttribute="leadingMargin" id="dTS-PI-0yw"/>
                             <constraint firstItem="fon-o9-6BL" firstAttribute="leading" secondItem="Q9Z-cU-BWy" secondAttribute="leadingMargin" id="e7h-LZ-Rxg"/>
+                            <constraint firstItem="2GK-wv-Ltg" firstAttribute="top" secondItem="v2m-F9-ekj" secondAttribute="bottom" constant="300" id="eUS-or-WW0"/>
                             <constraint firstItem="Ah4-2Y-6ba" firstAttribute="width" secondItem="61x-9F-Vaa" secondAttribute="width" id="ef7-JU-isD"/>
                             <constraint firstItem="Ah4-2Y-6ba" firstAttribute="width" secondItem="3WV-7e-1wj" secondAttribute="width" id="gNr-jJ-goc"/>
                             <constraint firstItem="Hsn-i8-NHf" firstAttribute="leading" secondItem="MJ5-CT-922" secondAttribute="trailing" constant="8" symbolic="YES" id="gUf-Vo-9b8"/>

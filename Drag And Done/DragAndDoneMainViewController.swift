@@ -57,6 +57,8 @@ class DragAndDoneMainViewController: UIViewController {
         //                taskHandler.createTaskNamed("Spork Away", imageName: "")
         //        //println("PLIST: \(taskHandler.plist())")
         
+        println("MAIN VIEW DID LOAD!!")
+        
         let placeHolderTap = UITapGestureRecognizer(target: self, action: "tappedPlaceHolder:")
         placeHolder.addGestureRecognizer(placeHolderTap)
         placeHolder.backgroundColor = UIColor.clearColor()
@@ -64,11 +66,25 @@ class DragAndDoneMainViewController: UIViewController {
         self.view.addSubview(placeHolder)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
         
+//        self.navigationItem.backBarButtonItem =
+//            [[[UIBarButtonItem alloc] initWithTitle:@"Custom Title"
+//        style:UIBarButtonItemStyleBordered
+//        target:nil
+//        action:nil] autorelease];
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        println("MAIN VIEW WILL APPEAR")
+        
+        for tv in taskViews
+        {
+            tv.removeFromSuperview()
+        }
+        taskViews.removeAll()
+        doneTaskViews.removeAll()
         
         //        topBarView.frame = CGRectMake(0, 0, self.view.bounds.size.width, topBarHeight)
         //        topBarView.backgroundColor = DNDColors.freakoGreen
@@ -251,6 +267,17 @@ class DragAndDoneMainViewController: UIViewController {
         }
     }
     
+    func tappedTaskView(tap: UITapGestureRecognizer)
+    {
+        println("TAPPED TASK VIEW")
+        resetTaskviews()
+        if let tv = tap.view as? DNDTaskView
+        {
+            tv.showsWholeName = true
+            tv.setNeedsDisplay()
+        }
+    }
+    
     func loadCurrentFolder()
     {
         taskViews.removeAll()
@@ -281,6 +308,9 @@ class DragAndDoneMainViewController: UIViewController {
                 tv.task = taskHandler.tasks()![i]
                 let panRec = UIPanGestureRecognizer(target: self, action: "handlePan:")
                 tv.addGestureRecognizer(panRec)
+                
+                let tvTap = UITapGestureRecognizer(target: self, action: "tappedTaskView:")
+                tv.addGestureRecognizer(tvTap)
                 
                 let longPress = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
                 tv.addGestureRecognizer(longPress)
@@ -404,6 +434,16 @@ class DragAndDoneMainViewController: UIViewController {
     @IBAction func handleTap(sender: UITapGestureRecognizer) {
         println("TAPPED WHOLE VIEW")
         toggleDotView()
+        resetTaskviews()
+    }
+    
+    func resetTaskviews()
+    {
+        for tv in taskViews
+        {
+            tv.showsWholeName = false
+            tv.setNeedsDisplay()
+        }
     }
     
     @IBAction func tappedActionArrow(tap: UITapGestureRecognizer) {

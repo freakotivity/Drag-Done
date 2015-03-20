@@ -56,7 +56,14 @@
                             <outletCollection property="gestureRecognizers" destination="wAQ-Se-iCu" appends="YES" id="qY1-CG-4om"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="086-u4-CPO"/>
+                    <navigationItem key="navigationItem" id="086-u4-CPO">
+                        <barButtonItem key="rightBarButtonItem" image="SegmentedCircle" id="Icm-jR-nye">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="CIr-ca-wKB" kind="show" identifier="Show stats" id="t4J-L0-p3t"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="dotsView" destination="nnL-yW-oH8" id="NoV-iG-hQz"/>
                         <segue destination="ub5-Gu-C0q" kind="show" identifier="settings" id="RTN-L1-qjL"/>
@@ -327,6 +334,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jtR-t4-Mpq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1908" y="265"/>
+        </scene>
+        <!--Stats View Controller-->
+        <scene sceneID="Ncn-6b-Cvn">
+            <objects>
+                <viewController id="CIr-ca-wKB" customClass="DNDStatsViewController" customModule="Drag_And_Done" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yQb-k8-Fe5"/>
+                        <viewControllerLayoutGuide type="bottom" id="y3K-ue-ihH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ccd-ca-mqe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="7IO-gv-AAt"/>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v7n-2z-abe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1695" y="991"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="2e3-Zd-ehU">
@@ -654,6 +683,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GhV-xf-Aeg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -667,6 +700,7 @@
     </scenes>
     <resources>
         <image name="CameraBlack.png" width="120" height="88"/>
+        <image name="SegmentedCircle" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qs6-V4-yRP"/>

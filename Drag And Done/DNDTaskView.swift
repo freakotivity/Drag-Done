@@ -10,6 +10,7 @@ import UIKit
 
 class DNDTaskView: UIView {    
     var taskColor:UIColor = DNDColors.freakoBlue
+    var showsWholeName = false
 
     var task:DNDTask? {
         didSet {
@@ -19,6 +20,7 @@ class DNDTaskView: UIView {
     }
     
     var shortNameLabel:UILabel!
+    var wholeNameLabel:UILabel!
     
     override init() {
         super.init()
@@ -39,8 +41,20 @@ class DNDTaskView: UIView {
     {
         self.backgroundColor = UIColor.clearColor()
         shortNameLabel = UILabel()
+        shortNameLabel.font = UIFont(name: "Helvetica Neue", size: 20.0)
         self.addSubview(shortNameLabel)
         shortNameLabel.textColor = UIColor.whiteColor()
+        
+        wholeNameLabel = UILabel()
+        wholeNameLabel.layer.borderColor = UIColor.grayColor().CGColor
+        wholeNameLabel.layer.borderWidth = 1.0
+        wholeNameLabel.layer.cornerRadius = 5.0
+        wholeNameLabel.layer.masksToBounds = true
+        wholeNameLabel.textAlignment = NSTextAlignment.Center
+        wholeNameLabel.backgroundColor = UIColor.whiteColor()
+        wholeNameLabel.font = UIFont(name: "Helvetica Neue", size: 15.0)
+        self.addSubview(wholeNameLabel)
+        wholeNameLabel.textColor = UIColor.blackColor()
     }
     
     override func drawRect(rect: CGRect) {
@@ -62,5 +76,13 @@ class DNDTaskView: UIView {
         shortNameLabel?.text = task?.shortName
         shortNameLabel?.sizeToFit()
         shortNameLabel?.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2)
+        
+        wholeNameLabel?.text = task?.name
+        wholeNameLabel?.sizeToFit()
+        wholeNameLabel?.bounds.size.height *= 1.2
+        wholeNameLabel?.bounds.size.width *= 1.2
+        wholeNameLabel?.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height * 0.8)
+        
+        wholeNameLabel?.hidden = !self.showsWholeName
     }
 }

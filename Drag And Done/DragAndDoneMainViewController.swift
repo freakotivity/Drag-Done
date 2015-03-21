@@ -34,7 +34,7 @@ class DragAndDoneMainViewController: UIViewController {
     override func viewDidLoad() {
         //                taskHandler.createFolderNamed("EMPTY", select: true, overwrite: true)
         //                taskHandler.createFolderNamed("FIRST", select: true, overwrite: true)
-        //                taskHandler.createTaskNamed("Spork One", imageName: " ")
+//                        taskHandler.createTaskNamed("My Mem", imageName: "mem")
         //                taskHandler.createTaskNamed("Spork Two", imageName: " ")
         //                taskHandler.createTaskNamed("Spork Three", imageName: " ")
         //                taskHandler.createTaskNamed("Spork FORK", imageName: " ")
@@ -66,7 +66,8 @@ class DragAndDoneMainViewController: UIViewController {
         self.view.addSubview(placeHolder)
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Bordered, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Done, target: nil, action: nil)
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
 //        self.navigationItem.backBarButtonItem =
 //            [[[UIBarButtonItem alloc] initWithTitle:@"Custom Title"
@@ -168,12 +169,14 @@ class DragAndDoneMainViewController: UIViewController {
             case .Changed: dotsView.hidden = false
             default: dotsView.hidden = true
             }
-            if pan.translationInView(self.view).y < -70
+//            if pan.translationInView(self.view).y < -70
+            if pan.translationInView(self.view).y < -self.dotsView.space
             {
                 pan.setTranslation(CGPointZero, inView: self.view)
                 nextFolder()
             }
-            if pan.translationInView(self.view).y > 70
+//            if pan.translationInView(self.view).y > 70
+            if pan.translationInView(self.view).y > self.dotsView.space
             {
                 pan.setTranslation(CGPointZero, inView: self.view)
                 prevFolder()
@@ -318,6 +321,7 @@ class DragAndDoneMainViewController: UIViewController {
                 tv.center.y = entryPoint
                 tv.center.x = tv.task!.done ? doneXPosition : todoXPosition
                 tv.layer.zPosition = ZOrder.Taskviews
+                
                 self.view.addSubview(tv)
                 self.taskViews.append(tv)
                 
@@ -433,17 +437,25 @@ class DragAndDoneMainViewController: UIViewController {
     
     @IBAction func handleTap(sender: UITapGestureRecognizer) {
         println("TAPPED WHOLE VIEW")
-        toggleDotView()
-        resetTaskviews()
+        if !resetTaskviews()
+        {
+            toggleDotView()
+        }
     }
     
-    func resetTaskviews()
+    func resetTaskviews() -> Bool
     {
+        var showedWholeName = false
         for tv in taskViews
         {
+            if tv.showsWholeName == true
+            {
+                showedWholeName = true
+            }
             tv.showsWholeName = false
             tv.setNeedsDisplay()
         }
+        return showedWholeName
     }
     
     @IBAction func tappedActionArrow(tap: UITapGestureRecognizer) {

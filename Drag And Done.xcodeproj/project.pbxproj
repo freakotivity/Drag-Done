@@ -19,6 +19,8 @@
 		1F6FE1211AA0B77000036974 /* DNDTaskHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6FE1201AA0B77000036974 /* DNDTaskHandler.swift */; };
 		1FC8C3D51ABCA9EC0089543D /* DNDCreateFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC8C3D41ABCA9EC0089543D /* DNDCreateFolderViewController.swift */; };
 		1FC8C3D71ABCBA620089543D /* DNDStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC8C3D61ABCBA620089543D /* DNDStatsViewController.swift */; };
+		1FC8C3D91ABDF7330089543D /* mem.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FC8C3D81ABDF7330089543D /* mem.png */; };
+		1FC8C3DB1ABE02340089543D /* DNDCreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FC8C3DA1ABE02340089543D /* DNDCreateTaskViewController.swift */; };
 		1FE792CB1AB8D33B0089A247 /* CameraBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FE792CA1AB8D33B0089A247 /* CameraBlack.png */; };
 		1FE792CD1ABAE6AF0089A247 /* DNDDotsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE792CC1ABAE6AF0089A247 /* DNDDotsView.swift */; };
 		1FFAA4C11AA4F749004FB813 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFAA4C01AA4F749004FB813 /* Extensions.swift */; };
@@ -55,6 +57,8 @@
 		1F6FE1201AA0B77000036974 /* DNDTaskHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDTaskHandler.swift; sourceTree = "<group>"; };
 		1FC8C3D41ABCA9EC0089543D /* DNDCreateFolderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDCreateFolderViewController.swift; sourceTree = "<group>"; };
 		1FC8C3D61ABCBA620089543D /* DNDStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDStatsViewController.swift; sourceTree = "<group>"; };
+		1FC8C3D81ABDF7330089543D /* mem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mem.png; sourceTree = "<group>"; };
+		1FC8C3DA1ABE02340089543D /* DNDCreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDCreateTaskViewController.swift; sourceTree = "<group>"; };
 		1FE792CA1AB8D33B0089A247 /* CameraBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraBlack.png; sourceTree = "<group>"; };
 		1FE792CC1ABAE6AF0089A247 /* DNDDotsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DNDDotsView.swift; sourceTree = "<group>"; };
 		1FFAA4C01AA4F749004FB813 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 				1F34E25A1AAF1B8B002CC12B /* DNDActionArrow.swift */,
 				1FE792CC1ABAE6AF0089A247 /* DNDDotsView.swift */,
 				1FC8C3D41ABCA9EC0089543D /* DNDCreateFolderViewController.swift */,
+				1FC8C3DA1ABE02340089543D /* DNDCreateTaskViewController.swift */,
 				1FC8C3D61ABCBA620089543D /* DNDStatsViewController.swift */,
 				1F6FE1051AA0B5BD00036974 /* Images.xcassets */,
 				1F6FE1071AA0B5BD00036974 /* LaunchScreen.xib */,
@@ -128,6 +133,7 @@
 		1F6FE0FC1AA0B5BD00036974 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1FC8C3D81ABDF7330089543D /* mem.png */,
 				1FE792CA1AB8D33B0089A247 /* CameraBlack.png */,
 				1F6FE0FD1AA0B5BD00036974 /* Info.plist */,
 			);
@@ -235,6 +241,7 @@
 				1F6FE1041AA0B5BD00036974 /* Main.storyboard in Resources */,
 				1F6FE1091AA0B5BD00036974 /* LaunchScreen.xib in Resources */,
 				1F6FE1061AA0B5BD00036974 /* Images.xcassets in Resources */,
+				1FC8C3D91ABDF7330089543D /* mem.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +262,7 @@
 				1F6FE0FF1AA0B5BD00036974 /* AppDelegate.swift in Sources */,
 				1F58E3741AA20B66001CF7CA /* DNDTaskView.swift in Sources */,
 				1F58E3701AA20864001CF7CA /* DNDColors.swift in Sources */,
+				1FC8C3DB1ABE02340089543D /* DNDCreateTaskViewController.swift in Sources */,
 				1FFAA4C11AA4F749004FB813 /* Extensions.swift in Sources */,
 				1F6FE1211AA0B77000036974 /* DNDTaskHandler.swift in Sources */,
 				C07AA1F31AB5CE970012AC52 /* FreakoColors.swift in Sources */,

@@ -84,6 +84,11 @@ extension UIView {
 extension String {
     func initials() -> String
     {
+        let ns = self as NSString
+        if ns.length < 6
+        {
+            return self
+        } else {
         let stringArray = split(self) {$0 == " "}
         var firsts = ""
                     for word in stringArray
@@ -92,8 +97,9 @@ extension String {
                     }
                     
                     return firsts
-
+        }
     }
+    
     func toBool() -> Bool? {
         switch self {
         case "True", "true", "yes", "1":

@@ -13,6 +13,7 @@ class DNDDotsView: UIView {
     var numberOfDots:Int = 1
     var selectedDot:Int = 1
     var colors = [String]()
+    var space:CGFloat!
 
     override func drawRect(rect: CGRect) {
         UIColor.blackColor().setFill()
@@ -24,7 +25,7 @@ class DNDDotsView: UIView {
                 DNDColors.colorFromString(colors[i]).setFill()
             }
             var dia:CGFloat = (self.bounds.size.width / 2.0) / 5
-            let space = (self.bounds.size.height) / CGFloat(numberOfDots + 1)
+            space = (self.bounds.size.height) / CGFloat(numberOfDots + 1)
             if i == (selectedDot)
             {
                 dia *= 2.0

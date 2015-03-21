@@ -21,6 +21,6 @@ class DNDCreateFolderViewController: UIViewController {
     
     @IBAction func Done(sender: UIBarButtonItem) {
         taskHandler.createFolderNamed(textField.text, select: true, overwrite: true)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

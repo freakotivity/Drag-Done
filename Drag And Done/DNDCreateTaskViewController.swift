@@ -43,7 +43,7 @@ class DNDCreateTaskViewController: UIViewController, UIImagePickerControllerDele
             UIImagePNGRepresentation(saveImage).writeToFile(picPath, atomically: true)
         }
         taskHandler.createTaskNamed(textFiled.text, imageName: fileName)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     

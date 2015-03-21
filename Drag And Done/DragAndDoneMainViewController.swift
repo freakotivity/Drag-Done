@@ -210,7 +210,10 @@ class DragAndDoneMainViewController: UIViewController {
     func arrangeDots(fade: Bool)
     {
         //println("ARRANGE DOTS")
+        if taskHandler.foldersColors() != nil
+        {
         dotsView.colors = taskHandler.foldersColors()!
+        }
         if let folders = taskHandler.foldersTitles()
         {
             dotsView.numberOfDots = folders.count

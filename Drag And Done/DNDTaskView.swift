@@ -8,10 +8,11 @@
 
 import UIKit
 
-class DNDTaskView: UIView {    
+class DNDTaskView: UIView {
+    let taskHandler = DNDTaskHandler()
     var taskColor:UIColor = DNDColors.freakoBlue
     var showsWholeName = false
-
+    
     var task:DNDTask? {
         didSet {
             //println("TASK SET \(task) \(self)")
@@ -31,7 +32,7 @@ class DNDTaskView: UIView {
         super.init(frame: frame)
         commonInit()
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -63,7 +64,25 @@ class DNDTaskView: UIView {
         UIColor.blackColor().setStroke()
         
         CGContextFillEllipseInRect(context, self.bounds)
-//        CGContextStrokeEllipseInRect(context, self.bounds)
+        CGContextAddEllipseInRect(context, self.bounds)
+        CGContextClip(context)
+        
+        if let imageName = self.task?.imageName?
+        {
+            
+            let docDir = taskHandler.docDir()
+            let picPath = docDir.stringByAppendingPathComponent(self.task!.imageName!)
+            
+            
+            if let image = UIImage(contentsOfFile: picPath)
+            {
+                image.drawInRect(self.bounds)
+                shortNameLabel.hidden = true
+            } else {
+                shortNameLabel.hidden = false
+            }
+        }
+        //        CGContextStrokeEllipseInRect(context, self.bounds)
     }
     
     override func setNeedsDisplay() {

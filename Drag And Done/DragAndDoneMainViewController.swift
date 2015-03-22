@@ -68,6 +68,7 @@ class DragAndDoneMainViewController: UIViewController {
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.Done, target: nil, action: nil)
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+
         
 //        self.navigationItem.backBarButtonItem =
 //            [[[UIBarButtonItem alloc] initWithTitle:@"Custom Title"
@@ -149,7 +150,8 @@ class DragAndDoneMainViewController: UIViewController {
                     {
                         taskHandler.taskDone(pannedView.task!, done: true)
                         pannedView.task?.done = true
-                        doneTaskViews.append(pannedView)
+//                        doneTaskViews.append(pannedView)
+                        doneTaskViews.insert(pannedView, atIndex: 0)
                     }
                 } else {
                     if pannedView.task?.done == true

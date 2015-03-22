@@ -17,6 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rIE-58-2Kw">
+                                <rect key="frame" x="299" y="0.0" width="2" height="600"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="2" id="uEj-Wa-rRW"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oug-c0-6Q0" customClass="DNDActionArrow" customModule="Drag_And_Done" customModuleProvider="target">
                                 <rect key="frame" x="550" y="550" width="50" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -45,7 +52,10 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nnL-yW-oH8" secondAttribute="bottom" constant="20" id="30k-rS-ca0"/>
+                            <constraint firstItem="rIE-58-2Kw" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="6Vo-lb-Ubv"/>
+                            <constraint firstAttribute="bottom" secondItem="rIE-58-2Kw" secondAttribute="bottom" id="bch-hy-C5W"/>
                             <constraint firstItem="nnL-yW-oH8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="hdr-fq-wtt"/>
+                            <constraint firstAttribute="centerX" secondItem="rIE-58-2Kw" secondAttribute="centerX" id="qqf-HK-nep"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oug-c0-6Q0" secondAttribute="bottom" id="ssg-iR-nQk"/>
                             <constraint firstAttribute="centerX" secondItem="nnL-yW-oH8" secondAttribute="centerX" id="wvW-JF-OA1"/>
                             <constraint firstAttribute="trailing" secondItem="oug-c0-6Q0" secondAttribute="trailing" id="yDh-Fe-p4V"/>
@@ -56,6 +66,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="086-u4-CPO">
+                        <barButtonItem key="leftBarButtonItem" image="Write" id="0fJ-Kh-BIe"/>
                         <barButtonItem key="rightBarButtonItem" image="SegmentedCircle" id="Icm-jR-nye">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
@@ -434,7 +445,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1sZ-Jr-UP5">
-                                <rect key="frame" x="16" y="101" width="568" height="29"/>
+                                <rect key="frame" x="16" y="100" width="568" height="29"/>
                                 <segments>
                                     <segment title="Daily"/>
                                     <segment title="Weekly"/>
@@ -443,166 +454,22 @@
                                 </segments>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frequency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0m-XI-yYH">
-                                <rect key="frame" x="16" y="72" width="81" height="21"/>
+                                <rect key="frame" x="16" y="72" width="81" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHD-0j-KSg">
-                                <rect key="frame" x="16" y="137" width="46" height="21"/>
+                                <rect key="frame" x="16" y="136" width="45.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IoG-iY-4ZT">
-                                <rect key="frame" x="16" y="166" width="568" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IoG-iY-4ZT">
+                                <rect key="frame" x="16" y="165" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Color" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fon-o9-6BL">
-                                <rect key="frame" x="16" y="204" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yul-pE-5I8">
-                                <rect key="frame" x="0.0" y="0.0" width="37" height="30"/>
-                                <state key="normal" title="Done"/>
-                            </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v2m-F9-ekj" customClass="RainbowColors" customModule="Drag_And_Done">
-                                <rect key="frame" x="16" y="233" width="67" height="67"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="5Rr-ib-LLH"/>
-                                    <constraint firstAttribute="width" constant="44" id="9Sx-Qw-7rU"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="5Rr-ib-LLH"/>
-                                        <exclude reference="9Sx-Qw-7rU"/>
-                                    </mask>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Al-jA-efV" customClass="RainbowColors" customModule="Drag_And_Done">
-                                <rect key="frame" x="183" y="233" width="67" height="67"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="ahq-zS-UFM"/>
-                                    <constraint firstAttribute="height" constant="44" id="fA4-nf-54c"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="ahq-zS-UFM"/>
-                                        <exclude reference="fA4-nf-54c"/>
-                                    </mask>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g2u-qC-Zoq" customClass="RainbowColors" customModule="Drag_And_Done">
-                                <rect key="frame" x="266" y="233" width="68" height="67"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="iAr-8A-dXg"/>
-                                    <constraint firstAttribute="width" constant="44" id="ops-nA-y1u"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="iAr-8A-dXg"/>
-                                        <exclude reference="ops-nA-y1u"/>
-                                    </mask>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OJO-jf-2qa" customClass="RainbowColors" customModule="Drag_And_Done">
-                                <rect key="frame" x="350" y="233" width="67" height="67"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="Zfs-ay-wOp"/>
-                                    <constraint firstAttribute="height" constant="44" id="gow-Hb-Uhj"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Zfs-ay-wOp"/>
-                                        <exclude reference="gow-Hb-Uhj"/>
-                                    </mask>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P7C-hq-FxP" customClass="RainbowColors" customModule="Drag_And_Done">
-                                <rect key="frame" x="433" y="233" width="68" height="67"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="8aV-72-wMZ"/>
-                                    <constraint firstAttribute="height" constant="44" id="j33-aX-Acv"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="8aV-72-wMZ"/>
-                                        <exclude reference="j33-aX-Acv"/>
-                                    </mask>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6p0-YG-xoU" customClass="RainbowColors" customModule="Drag_And_Done">
-                                <rect key="frame" x="517" y="233" width="67" height="67"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="DVb-9v-m9f"/>
-                                    <constraint firstAttribute="width" constant="44" id="c6s-I6-EcB"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="DVb-9v-m9f"/>
-                                        <exclude reference="c6s-I6-EcB"/>
-                                    </mask>
-                                </variation>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kxW-AT-1hi">
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="cPw-Wq-OSy"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61x-9F-Vaa">
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="Pi3-HQ-eD6"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3WV-7e-1wj">
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="fBl-Am-h52"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q38-yn-o72">
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="WCw-l9-7cC"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hsn-i8-NHf">
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="lJZ-E4-yAD"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ah4-2Y-6ba">
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="mvQ-aN-Nit"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MJ5-CT-922" customClass="RainbowColors" customModule="Drag_And_Done">
-                                <rect key="frame" x="99" y="233" width="68" height="67"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="eEM-r8-AIT"/>
-                                    <constraint firstAttribute="width" constant="44" id="wBc-e9-dtT"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="eEM-r8-AIT"/>
-                                        <exclude reference="wBc-e9-dtT"/>
-                                    </mask>
-                                </variation>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -660,6 +527,7 @@
     <resources>
         <image name="CameraBlack.png" width="120" height="88"/>
         <image name="SegmentedCircle" width="25" height="25"/>
+        <image name="Write" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Stb-AX-vMT"/>

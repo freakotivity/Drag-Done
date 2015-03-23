@@ -489,7 +489,7 @@ class DragAndDoneMainViewController: UIViewController {
         arrangeTaskviews(true)
         let ySpace: CGFloat = (self.view.bounds.size.height - (taskViewSize * 6)) / 6
         placeHolder.frame.size = CGSizeMake(taskViewSize * 0.9, taskViewSize * 0.9)
-        placeHolder.center = CGPointMake(doneXPosition, self.view.bounds.size.height - taskViewSize + ySpace)
+        placeHolder.center = CGPointMake(doneXPosition, self.view.bounds.size.height - taskViewSize + ySpace + 16)
         placeHolder.setNeedsDisplay()
         placeHolder.popUp()
     }

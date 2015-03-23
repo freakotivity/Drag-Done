@@ -354,14 +354,20 @@
                         <viewControllerLayoutGuide type="bottom" id="y3K-ue-ihH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ccd-ca-mqe">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="StatsMockup" translatesAutoresizingMaskIntoConstraints="NO" id="2ov-gX-52K">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
                         <barButtonItem title="Item" id="7IO-gv-AAt"/>
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7n-2z-abe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -527,7 +533,8 @@
     <resources>
         <image name="CameraBlack.png" width="120" height="88"/>
         <image name="SegmentedCircle" width="25" height="25"/>
-        <image name="Write" width="50" height="50"/>
+        <image name="StatsMockup" width="375" height="609"/>
+        <image name="Write" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Stb-AX-vMT"/>

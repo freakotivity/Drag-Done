@@ -70,8 +70,9 @@ class DragAndDoneMainViewController: UIViewController {
         navBarAttributes[NSForegroundColorAttributeName] = UIColor.whiteColor()
         navBarAttributes[NSFontAttributeName] = UIFont(name: "Helvetica Neue", size: 20.0)
         self.navigationController?.navigationBar.titleTextAttributes = navBarAttributes
-        
-//    
+        self.navigationController?.navigationBar.translucent = false
+
+//
         let placeHolderTap = UITapGestureRecognizer(target: self, action: "tappedPlaceHolder:")
         placeHolder.addGestureRecognizer(placeHolderTap)
         placeHolder.backgroundColor = UIColor.clearColor()
@@ -478,6 +479,7 @@ class DragAndDoneMainViewController: UIViewController {
         
         // Add the animation to the circle
         bezLayer.addAnimation(drawAnimation, forKey: "check")
+
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
             bezLayer.removeFromSuperlayer()
         }
@@ -488,6 +490,7 @@ class DragAndDoneMainViewController: UIViewController {
     println("SHOW PLACEHOLDER")
         arrangeTaskviews(true)
         let ySpace: CGFloat = (self.view.bounds.size.height - (taskViewSize * 6)) / 6
+        placeHolder.color = DNDColors.colorFromString(taskHandler.currentFolderColor()!)
         placeHolder.frame.size = CGSizeMake(taskViewSize * 0.9, taskViewSize * 0.9)
         placeHolder.center = CGPointMake(doneXPosition, self.view.bounds.size.height - taskViewSize + ySpace + 16)
         placeHolder.setNeedsDisplay()
@@ -498,6 +501,7 @@ class DragAndDoneMainViewController: UIViewController {
     {
         println("HIDE PLACEHOLDER")
         placeHolder.center = CGPointMake(-placeHolder.bounds.size.width, -placeHolder.bounds.size.height)
+        placeHolder.color = UIColor.blackColor()
     }
     
     @IBAction func tappedDotsView(tap: UITapGestureRecognizer) {

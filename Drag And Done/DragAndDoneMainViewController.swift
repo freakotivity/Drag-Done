@@ -58,7 +58,20 @@ class DragAndDoneMainViewController: UIViewController {
         //        //println("PLIST: \(taskHandler.plist())")
         
         println("MAIN VIEW DID LOAD!!")
+//        NSDictionary *navbarTitleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+//            [UIColor whiteColor],
+//            NSForegroundColorAttributeName,
+//            [UIFont fontWithName:@"MyFavoriteFont" size:20.0],
+//        NSFontAttributeName,
+//        nil];
+//        [self.transitionNavController.navigationBar setTitleTextAttributes:navbarTitleTextAttributes];
+//    }
+        let navBarAttributes = NSMutableDictionary()
+        navBarAttributes[NSForegroundColorAttributeName] = UIColor.whiteColor()
+        navBarAttributes[NSFontAttributeName] = UIFont(name: "Helvetica Neue", size: 20.0)
+        self.navigationController?.navigationBar.titleTextAttributes = navBarAttributes
         
+//    
         let placeHolderTap = UITapGestureRecognizer(target: self, action: "tappedPlaceHolder:")
         placeHolder.addGestureRecognizer(placeHolderTap)
         placeHolder.backgroundColor = UIColor.clearColor()
@@ -139,6 +152,11 @@ class DragAndDoneMainViewController: UIViewController {
         {
             switch pan.state
             {
+            case UIGestureRecognizerState.Began:
+                if pannedView.task?.done != true
+                {
+                self.showPlaceholder()
+                }
             case UIGestureRecognizerState.Changed:
                 pannedView.center.x += pan.translationInView(self.view).x
                 pannedView.center.y += pan.translationInView(self.view).y
@@ -152,6 +170,7 @@ class DragAndDoneMainViewController: UIViewController {
                         pannedView.task?.done = true
 //                        doneTaskViews.append(pannedView)
                         doneTaskViews.insert(pannedView, atIndex: 0)
+                        checkTask(pannedView)
                     }
                 } else {
                     if pannedView.task?.done == true
@@ -189,7 +208,7 @@ class DragAndDoneMainViewController: UIViewController {
     
     func refreshUI()
     {
-        arrangeTaskviews()
+        arrangeTaskviews(false)
         arrangeDots(false)
         
     }
@@ -228,7 +247,7 @@ class DragAndDoneMainViewController: UIViewController {
         dotsView.setNeedsDisplay()
     }
     
-    func arrangeTaskviews()
+    func arrangeTaskviews(withPlaceholder: Bool)
     {
         var counter:CGFloat = 1.0
         var doneCounter:CGFloat = 1.0
@@ -248,6 +267,12 @@ class DragAndDoneMainViewController: UIViewController {
         {
             placeHolder.bounds.size = CGSizeMake(taskViewSize, taskViewSize)
             placeHolder.center = CGPointMake(todoXPosition, self.view.bounds.size.height - (ySpace * counter) + (taskViewSize / 3))
+        } else {
+//            hidePlaceholder()
+        }
+        
+        if withPlaceholder {
+            doneCounter += 1.0
         } else {
             hidePlaceholder()
         }
@@ -417,8 +442,61 @@ class DragAndDoneMainViewController: UIViewController {
         
     }
     
+    func checkTask(taskView: DNDTaskView)
+    {
+        println("CHECK TASK!!")
+        let bezPath = UIBezierPath()
+        let checkFrame = taskView.bounds
+        
+        
+        bezPath.moveToPoint(CGPointMake(checkFrame.size.width / 4, checkFrame.size.height / 2))
+
+        bezPath.addLineToPoint(CGPointMake(checkFrame.size.width / 3, checkFrame.size.height * 3 / 4))
+        bezPath.addLineToPoint(CGPointMake(checkFrame.size.width * 3 / 4, checkFrame.size.height / 4))
+        
+        let bezLayer = CAShapeLayer()
+        bezLayer.path = bezPath.CGPath
+
+        bezLayer.strokeColor = UIColor.whiteColor().CGColor
+        bezLayer.fillColor = UIColor.clearColor().CGColor
+        bezLayer.lineWidth = 12.0
+        bezLayer.strokeStart = 0.0
+        bezLayer.strokeEnd = 1.0
+        taskView.layer.addSublayer(bezLayer)
+        
+        // Configure the animation
+        var drawAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        drawAnimation.repeatCount = 1.0
+        
+        // Animate from the full stroke being drawn to none of the stroke being drawn
+        drawAnimation.fromValue = NSNumber(double: 0.0)
+        drawAnimation.toValue = NSNumber(float: 5.0)
+        
+        drawAnimation.duration = 3
+        
+        drawAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        
+        // Add the animation to the circle
+        bezLayer.addAnimation(drawAnimation, forKey: "check")
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) { () -> Void in
+            bezLayer.removeFromSuperlayer()
+        }
+    }
+    
+    func showPlaceholder()
+    {
+    println("SHOW PLACEHOLDER")
+        arrangeTaskviews(true)
+        let ySpace: CGFloat = (self.view.bounds.size.height - (taskViewSize * 6)) / 6
+        placeHolder.frame.size = CGSizeMake(taskViewSize * 0.9, taskViewSize * 0.9)
+        placeHolder.center = CGPointMake(doneXPosition, self.view.bounds.size.height - taskViewSize + ySpace)
+        placeHolder.setNeedsDisplay()
+        placeHolder.popUp()
+    }
+    
     func hidePlaceholder()
     {
+        println("HIDE PLACEHOLDER")
         placeHolder.center = CGPointMake(-placeHolder.bounds.size.width, -placeHolder.bounds.size.height)
     }
     

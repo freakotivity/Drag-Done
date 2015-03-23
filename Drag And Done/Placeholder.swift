@@ -14,13 +14,13 @@ class Placeholder: UIView {
     override func drawRect(rect: CGRect) {
         //println("PLACEHOLDER DRAW RECT")
         let context = UIGraphicsGetCurrentContext()
-        let circleRadius = (min(rect.size.height / 2, rect.size.width / 2)) * 0.8 // Tweak the 0.8 to change the size of the placeholder!!
+        let circleRadius = (min(self.bounds.size.height / 2, self.bounds.size.width / 2)) * 0.8 // Tweak the 0.8 to change the size of the placeholder!!
         
         var startAngle:CGFloat = -CGFloat(M_PI / 2)
         let segmentAngle:CGFloat = 2 * CGFloat(M_PI) / 60
         
         let lineWidthFactor:CGFloat = 30.0 // Tweak this to alter line width!
-        CGContextSetLineWidth(context, min(rect.size.width / lineWidthFactor, rect.size.height / lineWidthFactor))
+        CGContextSetLineWidth(context, min(self.bounds.size.width / lineWidthFactor, self.bounds.size.height / lineWidthFactor))
         self.color.setFill()
 //        UIColor(red: 142/255.0, green: 68/255.0, blue: 173/255.0, alpha: 1.0).setFill()
         CGContextFillEllipseInRect(context, rect)
